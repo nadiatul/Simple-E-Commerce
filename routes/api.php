@@ -23,3 +23,5 @@ Route::get('/products-list', [App\Http\Controllers\ProductController::class, 'in
 Route::post('/add-to-cart', [App\Http\Controllers\AddToCartController::class, 'store']);
 
 Route::get('/get-carts/{userId}', [App\Http\Controllers\AddToCartController::class, 'getCartList']);
+Route::get('/get-membership-discount/{userId}', [App\Http\Controllers\MembershipController::class, 'getMembershipDscount']);
+

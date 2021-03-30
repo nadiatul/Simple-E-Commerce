@@ -36,10 +36,5 @@ class AddToCartController extends Controller
         $cart->quantity = 1;
         $cart->save();
         return ['message'=> 'Item is added to Cart'];
-    }
-
-    public function carts(){
-        return view('carts');
-    }
-    
+    } 
 }

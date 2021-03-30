@@ -21,7 +21,6 @@ import Vue from 'vue/dist/vue.common.js'
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('place-order-modal-success-component', require('./components/PlaceOrderModalSuccessComponent.vue').default);
 
 Vue.component('header-component', require('./layouts/HeaderComponent.vue').default);
 Vue.component('footer-component', require('./layouts/FooterComponent.vue').default);
@@ -30,12 +29,9 @@ Vue.component('main-component', require('./layouts/MainComponent.vue').default);
 Vue.component('nav-component', require('./layouts/NavComponent.vue').default);
 
 Vue.component('product-details-component', require('./pages/ProductDetailsComponent.vue').default);
-
 Vue.component('add-to-carts-component', require('./pages/AddToCartsComponent.vue').default);
 Vue.component('order-history-component', require('./pages/OrderHistoryComponent.vue').default);
 Vue.component('place-order-component', require('./pages/PlaceOrderComponent.vue').default);
-
-Vue.component('cart-component', require('./pages/CartComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
