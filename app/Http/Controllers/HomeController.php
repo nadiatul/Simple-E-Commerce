@@ -53,4 +53,12 @@ class HomeController extends Controller
     {
         return view('placeOrder');
     }
+
+
+    public function addToCarts()
+    {
+        // $userId = Auth::user()->id;
+        // $carts = AddToCart::where('user_id', $userId)->get();
+        return view('addToCarts');
+    } 
 }

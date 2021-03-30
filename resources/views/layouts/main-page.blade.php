@@ -12,7 +12,13 @@
 </head>
 <body>
     <div id="app">
+        <nav-component :username="{{Auth::user()}}"></nav-component>
+        <header-component></header-component>
+        
+   
         @yield('content')
+        
+        <footer-component></footer-component>
     </div>
 </body>
 </html>

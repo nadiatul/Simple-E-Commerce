@@ -4,7 +4,7 @@
     <div class="flex shadow-md my-10">
       <div class="w-3/4 bg-white px-10 py-10">
         <div class="flex justify-between border-b pb-8">
-          <h1 class="font-semibold text-2xl">Shopping Cart</h1>
+          <h1 class="font-semibold text-2xl">Teststs</h1>
           <h2 class="font-semibold text-2xl">3 Items User {{ user }}</h2>
         </div>
         <div class="flex mt-10 mb-5">
@@ -43,7 +43,6 @@
           Continue Shopping
         </a>
       </div>
-
       <div id="summary" class="w-1/4 px-8 py-10">
         <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
         <div class="flex justify-between mt-10 mb-5">
@@ -69,27 +68,21 @@
           <button href="/place-order" class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
         </div>
       </div>
-
     </div>
   </div>
-
  </main>
-
 </template>
 <script>
-this.getList();
-console.log('test');
+  console.log('hello world');
     const getCartList = 'api/get-carts/' +this.user.id;
     window.axios = require('axios');
-    export default ({
+    export default {
     name: 'AddToCartsComponent',
     props:['user'],
-    data: ()=>{
-      return 'shoping';
+    data () {
+      return 'carts';
     },
-    mounted: function(){
-
-    },
+    mounted: function(){ },
     methods:{
         getList(){
           axios.get(getCartList).then((response)=>{
@@ -100,5 +93,5 @@ console.log('test');
           })
         }
     }
-})
+}
 </script>

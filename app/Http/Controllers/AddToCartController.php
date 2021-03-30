@@ -25,7 +25,6 @@ class AddToCartController extends Controller
 
     public function getCartList($userId)
     {
-        // $userId = Auth::user()->id;?
         $carts = AddToCart::where('user_id', $userId)->get();
         return $carts;
     } 
@@ -37,6 +36,10 @@ class AddToCartController extends Controller
         $cart->quantity = 1;
         $cart->save();
         return ['message'=> 'Item is added to Cart'];
+    }
+
+    public function carts(){
+        return view('carts');
     }
     
 }
