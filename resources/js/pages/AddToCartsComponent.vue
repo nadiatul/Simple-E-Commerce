@@ -13,7 +13,7 @@
           <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
           <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
         </div>
-        <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5" v-for="cart of carts">
+        <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
           <div class="flex w-2/5"> <!-- product -->
             <div class="w-20">
               <img class="h-24" src="https://drive.google.com/uc?id=18KkAVkGFvaGNqPy2DIvTqmUH_nk39o3z" alt="">
@@ -77,19 +77,28 @@
 
 </template>
 <script>
-    const getCartListUrl = 'api/get-carts' ;
+this.getList();
+console.log('test');
+    const getCartList = 'api/get-carts/' +this.user.id;
     window.axios = require('axios');
-export default ({
-
+    export default ({
     name: 'AddToCartsComponent',
     props:['user'],
-     mounted: function(){
-        axios.get(getCartListUrl+ '/' +this.user.id).then((response)=>{
+    data: ()=>{
+      return 'shoping';
+    },
+    mounted: function(){
+
+    },
+    methods:{
+        getList(){
+          axios.get(getCartList).then((response)=>{
             console.log(response)
             this.carts = response.data;
-        }, (error)=> {
-            console.log(error)
-        })
-    },
+          }, (error)=> {
+              console.log(error)
+          })
+        }
+    }
 })
 </script>
