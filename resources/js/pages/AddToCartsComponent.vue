@@ -5,8 +5,8 @@
 </template>
 <script>
   console.log('hello world');
-    // const getCartList = 'api/get-carts/' +this.user.id;
-    // window.axios = require('axios');
+    const getCartList = 'api/get-carts/' +this.user.id;
+    window.axios = require('axios');
     export default {
     name: 'AddToCartsComponent',
     props:['user'],

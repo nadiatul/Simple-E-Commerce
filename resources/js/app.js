@@ -20,8 +20,6 @@ import Vue from 'vue/dist/vue.common.js'
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
 Vue.component('header-component', require('./layouts/HeaderComponent.vue').default);
 Vue.component('footer-component', require('./layouts/FooterComponent.vue').default);
 Vue.component('navbar-component', require('./layouts/NavbarComponent.vue').default);
