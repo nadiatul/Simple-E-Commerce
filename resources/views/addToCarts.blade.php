@@ -8,7 +8,7 @@
     <nav-component :username="{{Auth::user()}}"></nav-component>
     <header-component></header-component>
     
-    <add-to-carts-component :carts="{{carts}}"></add-to-carts-component>
+    <add-to-carts-component :user="{{Auth::user()}}"></add-to-carts-component>
     
     <footer-component></footer-component>
 @endsection

@@ -21,3 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/home', []);
 Route::get('/products-list', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
 Route::post('/add-to-cart', [App\Http\Controllers\AddToCartController::class, 'store']);
+
+Route::get('/get-carts/{userId}', [App\Http\Controllers\AddToCartController::class, 'getCartList']);

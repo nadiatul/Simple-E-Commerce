@@ -20,7 +20,14 @@ class AddToCartController extends Controller
     {
         $userId = Auth::user()->id;
         $carts = AddToCart::where('user_id', $userId)->get();
-        return view('addToCarts', ['carts'=> $carts]);
+        return view('addToCarts');
+    } 
+
+    public function getCartList($userId)
+    {
+        // $userId = Auth::user()->id;?
+        $carts = AddToCart::where('user_id', $userId)->get();
+        return $carts;
     } 
 
     public function store(Request $request) {
