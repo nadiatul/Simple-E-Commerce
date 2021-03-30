@@ -1,2 +1,51 @@
 # Simple-E-Commerce
  Simple-E-Commerce Laravel 8 + Vue 3 + TailwindCSS
+
+
+This is a simple E-Commerce system using Laravel 8 + Vue 3 + TailwindCSS 
+
+In this E-commerce system we have few simple and basic functionality and features which are:-
+1. List of Products
+2. Add To Cart
+3. Login
+4. Register 
+
+Instruction
+------------ 
+git clone https://github.com/nadiatul/Simple-E-Commerce.git
+npm install 
+composer install
+create a database 
+configure database credentials in  config/database.php & .env file
+php artisan migrate
+php artisan key:generate
+import Simple-E-Commerce/database/data/e-commerce.sql 
+php artisan serve 
+
+
+I'm extremely appologized that I'm encountered A Technical Issues where the Vue files I'm working with is not rendered properly.. I tried looking for the options.. But it quite challenging since I'm new with Vue JS & TailwindCSS. Btw, this is the first I'm doing it. 
+
+But it pretty interesting despite of the challenge.
+
+
+The Idea & Planning
+1. I'm planning on using the filter/pipe for discount of different membership type. Which mean each membership type have different discount rate. In the pipe, it will return the new RM and discounted price with proper finance format eg. RM 6,299.00
+2. Filter by the category and Brand
+3. Continue with the Add to Cart & Order History.
+4. Adding the user activity using Transaction / Audit Trail
+
+For the installation/Deployment to server
+I used to copy the entire project file to the server. But later on I found out we can minify/compress/build the project file first and deploy to server
+
+
+Credits To:
+
+Idea:
+https://code-projects.org/e-commerce-site-in-php-with-source-code/
+
+Photos: 
+Photo by <a href="https://unsplash.com/@xps?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">XPS</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>  
+
+Photo by <a href="https://unsplash.com/@campaign_creators?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Campaign Creators</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
+Thank you so much :)
