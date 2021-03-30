@@ -28,6 +28,8 @@ I'm extremely appologized that I'm encountered A Technical Issues where the Vue 
 
 But it pretty interesting despite of the challenge.
 
+This is the Product List:  
+![alt text](https://www.linkpicture.com/q/ProductList.png)
 
 The Idea & Planning
 1. I'm planning on using the filter/pipe for discount of different membership type. Which mean each membership type have different discount rate. In the pipe, it will return the new RM and discounted price with proper finance format eg. RM 6,299.00
