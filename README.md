@@ -12,15 +12,16 @@ In this E-commerce system we have few simple and basic functionality and feature
 
 Instruction
 ------------ 
-git clone https://github.com/nadiatul/Simple-E-Commerce.git
-npm install 
-composer install
-create a database 
-configure database credentials in  config/database.php & .env file
-php artisan migrate
-php artisan key:generate
-import Simple-E-Commerce/database/data/e-commerce.sql 
-php artisan serve 
+1. git clone https://github.com/nadiatul/Simple-E-Commerce.git
+2. npm install 
+3. composer install
+4. create a database 
+5. configure database credentials in  config/database.php & .env file
+6. php artisan migrate
+7. php artisan key:generate
+8. import Simple-E-Commerce/database/data/e-commerce.sql 
+9. php artisan serve 
+10. Register as a user to view the products
 
 
 I'm extremely appologized that I'm encountered A Technical Issues where the Vue files I'm working with is not rendered properly.. I tried looking for the options.. But it quite challenging since I'm new with Vue JS & TailwindCSS. Btw, this is the first I'm doing it. 
