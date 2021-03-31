@@ -1,10 +1,10 @@
 <template>
   <main>
-      <div v-if="message" class="row mx-2">
-        <div class="alert alert-success" role="alert">
+      <div v-if="message" class="shadow-md overflow-hidden m-2 bg-green-200 py-2 px-1">
+        <div class="row mx-2">
             {{ message }} 
         </div>
-      </div>
+    </div>
       <div class="row mx-2">
           <div class="grid-cols-4">
                 <navbar-component/>

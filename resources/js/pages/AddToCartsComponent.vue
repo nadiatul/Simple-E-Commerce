@@ -103,7 +103,6 @@
             this.carts.forEach((element, index)=>{
                 this.carts[index] = {...element, price: element.product.price,total: element.product.price }
             })
-
             this.calculateTotal();
           }, (error)=> {
               console.log(error)
@@ -119,16 +118,12 @@
         },
         increaseQuantity(index){
           this.carts[index].quantity+=1;
-          console.log('index', index);
-          console.log('this.carts[index].quantity', this.carts[index].quantity);
           this.calculateTotalItem(index);
           this.calculateTotal(index);
           this.refreshData();
         },
         descreaseQuantity(index){
           this.carts[index].quantity-=1;
-          console.log('index', index);
-          console.log('this.carts[index].quantity', this.carts[index].quantity);
           this.calculateTotalItem(index)
           this.calculateTotal(index);
           this.refreshData();
@@ -144,12 +139,6 @@
           const discountPrice = (this.discountPercentage/100) * this.totalItems;
           const shippingFee = 10.00
           this.total = this.totalItems -(discountPrice + shippingFee)
-          console.log(
-            'discountPercentage',this.discountPercentage,
-            'totalPrice',this.totalPrice,
-            'totalItems',this.totalItems,
-            'total',this.total,
-          )
         },
         refreshData() {
           this.refresh = false;

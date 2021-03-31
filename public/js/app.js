@@ -2364,16 +2364,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     increaseQuantity: function increaseQuantity(index) {
       this.carts[index].quantity += 1;
-      console.log('index', index);
-      console.log('this.carts[index].quantity', this.carts[index].quantity);
       this.calculateTotalItem(index);
       this.calculateTotal(index);
       this.refreshData();
     },
     descreaseQuantity: function descreaseQuantity(index) {
       this.carts[index].quantity -= 1;
-      console.log('index', index);
-      console.log('this.carts[index].quantity', this.carts[index].quantity);
       this.calculateTotalItem(index);
       this.calculateTotal(index);
       this.refreshData();
@@ -2397,7 +2393,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var discountPrice = this.discountPercentage / 100 * this.totalItems;
       var shippingFee = 10.00;
       this.total = this.totalItems - (discountPrice + shippingFee);
-      console.log('discountPercentage', this.discountPercentage, 'totalPrice', this.totalPrice, 'totalItems', this.totalItems, 'total', this.total);
     },
     refreshData: function refreshData() {
       var _this4 = this;
@@ -2605,13 +2600,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
+var addToCartUrl = '/api/add-to-cart';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'ProductDetails'
+  name: 'ProductDetailsComponent',
+  props: ['user'],
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get('/api/product/' + this.user.id).then(function (response) {
+      _this.product = response.data;
+    }, function (error) {
+      console.log(error);
+    });
+  },
+  data: function data() {
+    return {
+      'product': null,
+      'message': null
+    };
+  },
+  methods: {
+    addToCart: function addToCart(id) {
+      var _this2 = this;
+
+      axios.post(addToCartUrl, {
+        productId: id,
+        userId: this.user.id
+      }).then(function (response) {
+        console.log(response);
+        _this2.message = response.data.message;
+        setTimeout(function () {
+          _this2.message = null;
+        }, 3000);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  filters: {
+    showPrice: function showPrice(value) {
+      if (value) {
+        var price = Number(value);
+        return price.toLocaleString('en-MY', {
+          style: 'currency',
+          currency: 'MYR'
+        });
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -38850,13 +38886,17 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("main", [
     _vm.message
-      ? _c("div", { staticClass: "row mx-2" }, [
-          _c(
-            "div",
-            { staticClass: "alert alert-success", attrs: { role: "alert" } },
-            [_vm._v("\n          " + _vm._s(_vm.message) + " \n      ")]
-          )
-        ])
+      ? _c(
+          "div",
+          {
+            staticClass: "shadow-md overflow-hidden m-2 bg-green-200 py-2 px-1"
+          },
+          [
+            _c("div", { staticClass: "row mx-2" }, [
+              _vm._v("\n          " + _vm._s(_vm.message) + " \n      ")
+            ])
+          ]
+        )
       : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "row mx-2" }, [
@@ -40207,57 +40247,81 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("main", [
+    _vm.message
+      ? _c(
+          "div",
+          {
+            staticClass: "shadow-md overflow-hidden m-4 bg-green-200 py-3 px-1"
+          },
+          [
+            _c("div", { staticClass: "row mx-2" }, [
+              _vm._v("\n        " + _vm._s(_vm.message) + " \n    ")
+            ])
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
     _c("div", { staticClass: "bg-white shadow-md overflow-hidden m-4" }, [
       _c("div", { staticClass: "md:flex" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("div", { staticClass: "p-8" }, [
-          _c("h1", { staticClass: "text-xl font-bold" }, [
-            _vm._v("DELL Latitude A")
-          ]),
-          _vm._v(" "),
-          _c("h1", { staticClass: "font-bold text-xl" }, [_vm._v("RM 5900")]),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "bg-gray-800 p-1 rounded-full text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white",
-              attrs: { href: "/add-to-carts" }
-            },
-            [
-              _c("span", { staticClass: "sr-only" }),
+        _vm.product
+          ? _c("div", { staticClass: "p-8" }, [
+              _c("h1", { staticClass: "text-xl font-bold" }, [
+                _vm._v(_vm._s(_vm.product.name))
+              ]),
+              _vm._v(" "),
+              _c("h1", { staticClass: "font-bold text-xl" }, [
+                _vm._v(_vm._s(_vm._f("showPrice")(_vm.product.price)) + " ")
+              ]),
               _vm._v(" "),
               _c(
-                "svg",
+                "button",
                 {
-                  staticClass: "h-6 w-6",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    fill: "none",
-                    viewBox: "0 0 24 24",
-                    stroke: "currentColor"
+                  staticClass:
+                    "bg-gray-800 p-1 rounded-full text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white",
+                  on: {
+                    click: function($event) {
+                      return _vm.addToCart(_vm.product.id)
+                    }
                   }
                 },
                 [
-                  _c("path", {
-                    attrs: {
-                      "stroke-linecap": "round",
-                      "stroke-linejoin": "round",
-                      "stroke-width": "2",
-                      d:
-                        "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                    }
-                  })
+                  _c("span", { staticClass: "sr-only" }),
+                  _vm._v(" "),
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "h-6 w-6",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        fill: "none",
+                        viewBox: "0 0 24 24",
+                        stroke: "currentColor"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          "stroke-linecap": "round",
+                          "stroke-linejoin": "round",
+                          "stroke-width": "2",
+                          d:
+                            "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                        }
+                      })
+                    ]
+                  )
                 ]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("span", { staticClass: "font-bold" }, [_vm._v("Add to cart")]),
-          _vm._v(" "),
-          _vm._m(1)
-        ]),
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "font-bold" }, [_vm._v("Add to cart")]),
+              _vm._v(" "),
+              _c("div", {
+                domProps: { innerHTML: _vm._s(_vm.product.description) }
+              })
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _c("div", {
           staticClass: "flex items-center justify-between px-4 py-2 bg-gray-900"
@@ -40280,42 +40344,6 @@ var staticRenderFns = [
           alt: "Man looking at item at a store"
         }
       })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-2 text-gray-500" }, [
-      _c("p", { staticClass: "my-2" }, [
-        _vm._v(
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada quam justo, vel euismod dolor hendrerit eu. Phasellus varius risus sit amet tincidunt maximus. Vivamus tincidunt ut ipsum et accumsan. Integer accumsan mauris vitae molestie pulvinar. Aenean eget lorem tempor, dictum augue vitae, mattis est. Donec ac arcu et ligula scelerisque luctus. Sed quis venenatis ante. Aenean scelerisque sodales sapien malesuada sodales."
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "my-2" }, [
-        _vm._v(
-          "Vestibulum aliquam nisl in ornare mollis. Cras fermentum fermentum mauris non pulvinar. Maecenas in ullamcorper ligula. Fusce laoreet dignissim orci sit amet posuere. Morbi feugiat egestas erat, quis pulvinar arcu vehicula vel. Phasellus faucibus arcu nunc. Donec non pretium turpis. Nullam consequat, sem id ullamcorper lacinia, ligula mi luctus sapien, quis finibus diam justo vel erat. Phasellus commodo blandit dictum. Quisque accumsan purus velit, sit amet laoreet erat molestie et. Nunc eros ex, rutrum vitae lacus nec, vulputate cursus tellus. Suspendisse finibus volutpat quam id finibus. Aenean eget mauris eget dui hendrerit fringilla. Quisque elementum vel urna at semper. Nam sodales ut purus in placerat."
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "my-2" }, [
-        _vm._v(
-          "Ut quis nulla urna. Nulla varius, felis at ullamcorper posuere, felis lectus iaculis justo, vel ultricies metus ante ut tellus. Nulla quis posuere ex, et pretium est. Nam vehicula massa in tempus pulvinar. Nulla porta nunc lorem, nec accumsan eros consectetur tincidunt. Nunc sed lacus lacus. Suspendisse eget massa laoreet, tempus diam et, faucibus nulla."
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "my-2" }, [
-        _vm._v(
-          "Vestibulum diam augue, feugiat non luctus nec, laoreet sed libero. Aenean eu risus vitae nisi vehicula pretium. Sed sem nisl, fermentum et feugiat quis, commodo nec velit. Sed convallis dolor urna, eu finibus nibh placerat eget. Ut luctus mollis dolor, eget porttitor neque gravida eu. Nulla id neque vehicula, aliquet neque et, euismod nibh. Aenean aliquam urna erat, id ultricies erat finibus eu. Maecenas vehicula mi id dui aliquam, in efficitur turpis euismod. Phasellus sed urna at justo sagittis aliquet ut non massa. Proin viverra condimentum ante posuere dapibus. Fusce nisl lectus, ultrices non ipsum egestas, porttitor accumsan tellus. Vivamus efficitur lacus at tincidunt dictum."
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "my-2" }, [
-        _vm._v(
-          "Aliquam urna magna, luctus feugiat hendrerit a, semper eu tortor. Sed ornare eget magna euismod placerat. Fusce eros elit, fringilla in tincidunt vitae, viverra at tellus. Nam consequat faucibus gravida. Donec quis faucibus dui, id cursus nisi. Aenean auctor luctus nisl, non tempor justo molestie eget. Vivamus dui ipsum, porttitor at ante venenatis, molestie sollicitudin dui. Pellentesque vel porta massa. Aliquam eget congue justo. Nam vel tortor ac neque imperdiet pharetra. Integer venenatis quam in nisl convallis, ut rhoncus justo tempor."
-        )
-      ])
     ])
   }
 ]

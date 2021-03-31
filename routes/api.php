@@ -20,6 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/home', []);
 Route::get('/products-list', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
+Route::get('/product/{id}', [App\Http\Controllers\ProductController::class, 'view'])->name('view');
 Route::post('/add-to-cart', [App\Http\Controllers\AddToCartController::class, 'store']);
 
 Route::get('/get-carts/{userId}', [App\Http\Controllers\AddToCartController::class, 'getCartList']);
