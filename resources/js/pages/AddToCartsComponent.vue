@@ -1,6 +1,6 @@
 <template>
  <main> 
- <div class="container mx-auto mt-10">
+ <div class="container mx-auto mt-10" v-if="refresh">
     <div class="flex shadow-md my-10">
       <div class="w-3/4 bg-white px-10 py-10">
         <div class="flex justify-between border-b pb-8">
@@ -13,7 +13,7 @@
           <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Price</h3>
           <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">Total</h3>
         </div>
-        <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5" v-for="cart in carts" v-bind:key="cart.id">
+        <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5" v-for="(cart,index) in carts" v-bind:key="cart.id">
           <div class="flex w-2/5">
             <div class="w-20">
               <img class="h-24" :src="cart.product.image" alt="">
@@ -24,7 +24,7 @@
             </div>
           </div>
           <div class="flex justify-center w-1/5">
-            <svg @click="decreaseQuantity(index)" class="fill-current text-gray-600 w-3" viewBox="0 0 448 512"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
+            <svg @click="descreaseQuantity(index)" class="fill-current text-gray-600 w-3" viewBox="0 0 448 512"><path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"/>
             </svg>
 
             <input class="mx-2 border text-center w-8" type="text" :value="cart.quantity">
@@ -88,6 +88,7 @@
         return { 
             'carts': null,
             'quantity': [],
+            'refresh': true,
             'discountPercentage': null,
             'totalPrice': null,
             'totalItems': null,
@@ -117,14 +118,25 @@
           })
         },
         increaseQuantity(index){
-          this.carts[index].quantity++;
-          this.calculateTotal(index)
+          this.carts[index].quantity+=1;
+          console.log('index', index);
+          console.log('this.carts[index].quantity', this.carts[index].quantity);
+          this.calculateTotalItem(index);
+          this.calculateTotal(index);
+          this.refreshData();
         },
         descreaseQuantity(index){
-          this.carts[index].quantity--;
+          this.carts[index].quantity-=1;
+          console.log('index', index);
+          console.log('this.carts[index].quantity', this.carts[index].quantity);
+          this.calculateTotalItem(index)
+          this.calculateTotal(index);
+          this.refreshData();
+        },
+        calculateTotalItem(index) {
+           this.carts[index].total = this.carts[index].price * this.carts[index].quantity;
         },
         calculateTotal(index){
-        //  this.carts[index].total = this.carts[index].price * this.carts[index].quantity;
           const sumPrice = this.carts.map((e=> e.price ));
           const sumItems = this.carts.map((e=> e.total ));
           this.totalPrice = sumPrice.reduce((sum, x) => Number(sum) + Number(x));
@@ -138,6 +150,12 @@
             'totalItems',this.totalItems,
             'total',this.total,
           )
+        },
+        refreshData() {
+          this.refresh = false;
+          setTimeout(()=>{
+              this.refresh = true;
+          },10)
         }
     },filters: {
         showPrice: ((value) =>{

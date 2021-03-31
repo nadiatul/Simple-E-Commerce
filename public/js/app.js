@@ -2324,6 +2324,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       'carts': null,
       'quantity': [],
+      'refresh': true,
       'discountPercentage': null,
       'totalPrice': null,
       'totalItems': null,
@@ -2362,14 +2363,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     increaseQuantity: function increaseQuantity(index) {
-      this.carts[index].quantity++;
+      this.carts[index].quantity += 1;
+      console.log('index', index);
+      console.log('this.carts[index].quantity', this.carts[index].quantity);
+      this.calculateTotalItem(index);
       this.calculateTotal(index);
+      this.refreshData();
     },
     descreaseQuantity: function descreaseQuantity(index) {
-      this.carts[index].quantity--;
+      this.carts[index].quantity -= 1;
+      console.log('index', index);
+      console.log('this.carts[index].quantity', this.carts[index].quantity);
+      this.calculateTotalItem(index);
+      this.calculateTotal(index);
+      this.refreshData();
+    },
+    calculateTotalItem: function calculateTotalItem(index) {
+      this.carts[index].total = this.carts[index].price * this.carts[index].quantity;
     },
     calculateTotal: function calculateTotal(index) {
-      //  this.carts[index].total = this.carts[index].price * this.carts[index].quantity;
       var sumPrice = this.carts.map(function (e) {
         return e.price;
       });
@@ -2386,6 +2398,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var shippingFee = 10.00;
       this.total = this.totalItems - (discountPrice + shippingFee);
       console.log('discountPercentage', this.discountPercentage, 'totalPrice', this.totalPrice, 'totalItems', this.totalItems, 'total', this.total);
+    },
+    refreshData: function refreshData() {
+      var _this4 = this;
+
+      this.refresh = false;
+      setTimeout(function () {
+        _this4.refresh = true;
+      }, 10);
     }
   },
   filters: {
@@ -39555,235 +39575,252 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("main", [
-    _c("div", { staticClass: "container mx-auto mt-10" }, [
-      _c("div", { staticClass: "flex shadow-md my-10" }, [
-        _c(
-          "div",
-          { staticClass: "w-3/4 bg-white px-10 py-10" },
-          [
-            _c("div", { staticClass: "flex justify-between border-b pb-8" }, [
-              _c("h1", { staticClass: "font-semibold text-2xl" }, [
-                _vm._v("Shopping Car")
-              ]),
-              _vm._v(" "),
-              _c("h2", { staticClass: "font-semibold text-2xl" }, [
-                _vm._v(_vm._s(_vm.carts.length || "") + " Items")
-              ])
-            ]),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._l(_vm.carts, function(cart) {
-              return _c(
-                "div",
-                {
-                  key: cart.id,
-                  staticClass:
-                    "flex items-center hover:bg-gray-100 -mx-8 px-6 py-5"
-                },
-                [
-                  _c("div", { staticClass: "flex w-2/5" }, [
-                    _c("div", { staticClass: "w-20" }, [
-                      _c("img", {
-                        staticClass: "h-24",
-                        attrs: { src: cart.product.image, alt: "" }
-                      })
+    _vm.refresh
+      ? _c("div", { staticClass: "container mx-auto mt-10" }, [
+          _c("div", { staticClass: "flex shadow-md my-10" }, [
+            _c(
+              "div",
+              { staticClass: "w-3/4 bg-white px-10 py-10" },
+              [
+                _c(
+                  "div",
+                  { staticClass: "flex justify-between border-b pb-8" },
+                  [
+                    _c("h1", { staticClass: "font-semibold text-2xl" }, [
+                      _vm._v("Shopping Car")
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "flex flex-col justify-between ml-4 flex-grow"
-                      },
-                      [
-                        _c("span", { staticClass: "font-bold text-sm" }, [
-                          _vm._v(_vm._s(cart.product.name))
+                    _c("h2", { staticClass: "font-semibold text-2xl" }, [
+                      _vm._v(_vm._s(_vm.carts.length || "") + " Items")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._m(0),
+                _vm._v(" "),
+                _vm._l(_vm.carts, function(cart, index) {
+                  return _c(
+                    "div",
+                    {
+                      key: cart.id,
+                      staticClass:
+                        "flex items-center hover:bg-gray-100 -mx-8 px-6 py-5"
+                    },
+                    [
+                      _c("div", { staticClass: "flex w-2/5" }, [
+                        _c("div", { staticClass: "w-20" }, [
+                          _c("img", {
+                            staticClass: "h-24",
+                            attrs: { src: cart.product.image, alt: "" }
+                          })
                         ]),
                         _vm._v(" "),
                         _c(
-                          "button",
+                          "div",
                           {
                             staticClass:
-                              "font-semibold hover:text-red-500 text-gray-500 text-xs",
+                              "flex flex-col justify-between ml-4 flex-grow"
+                          },
+                          [
+                            _c("span", { staticClass: "font-bold text-sm" }, [
+                              _vm._v(_vm._s(cart.product.name))
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "font-semibold hover:text-red-500 text-gray-500 text-xs",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.removeCart(cart.id)
+                                  }
+                                }
+                              },
+                              [_vm._v("Remove")]
+                            )
+                          ]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex justify-center w-1/5" }, [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "fill-current text-gray-600 w-3",
+                            attrs: { viewBox: "0 0 448 512" },
                             on: {
                               click: function($event) {
-                                return _vm.removeCart(cart.id)
+                                return _vm.descreaseQuantity(index)
                               }
                             }
                           },
-                          [_vm._v("Remove")]
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "mx-2 border text-center w-8",
+                          attrs: { type: "text" },
+                          domProps: { value: cart.quantity }
+                        }),
+                        _vm._v(" "),
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "fill-current text-gray-600 w-3",
+                            attrs: { viewBox: "0 0 448 512" },
+                            on: {
+                              click: function($event) {
+                                return _vm.increaseQuantity(index)
+                              }
+                            }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                              }
+                            })
+                          ]
                         )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flex justify-center w-1/5" }, [
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "text-center w-1/5 font-semibold text-sm"
+                        },
+                        [_vm._v(_vm._s(_vm._f("showPrice")(cart.price)))]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "text-center w-1/5 font-semibold text-sm"
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("discount")(
+                                cart.total,
+                                _vm.discountPercentage
+                              )
+                            )
+                          )
+                        ]
+                      )
+                    ]
+                  )
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "bg-blue-800 p-3 flex font-semibold text-white text-sm mt-10",
+                    on: {
+                      click: function($event) {
+                        _vm.window.location = "home"
+                      }
+                    }
+                  },
+                  [
                     _c(
                       "svg",
                       {
-                        staticClass: "fill-current text-gray-600 w-3",
-                        attrs: { viewBox: "0 0 448 512" },
-                        on: {
-                          click: function($event) {
-                            return _vm.decreaseQuantity(_vm.index)
-                          }
-                        }
+                        staticClass: "fill-current mr-2 text-indigo-600 w-4",
+                        attrs: { viewBox: "0 0 448 512" }
                       },
                       [
                         _c("path", {
                           attrs: {
                             d:
-                              "M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
+                              "M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"
                           }
                         })
                       ]
                     ),
-                    _vm._v(" "),
-                    _c("input", {
-                      staticClass: "mx-2 border text-center w-8",
-                      attrs: { type: "text" },
-                      domProps: { value: cart.quantity }
-                    }),
-                    _vm._v(" "),
-                    _c(
-                      "svg",
-                      {
-                        staticClass: "fill-current text-gray-600 w-3",
-                        attrs: { viewBox: "0 0 448 512" },
-                        on: {
-                          click: function($event) {
-                            return _vm.increaseQuantity(_vm.index)
-                          }
-                        }
-                      },
-                      [
-                        _c("path", {
-                          attrs: {
-                            d:
-                              "M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"
-                          }
-                        })
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
+                    _vm._v("\n         Continue Shopping\n       ")
+                  ]
+                )
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "w-1/4 px-8 py-10", attrs: { id: "summary" } },
+              [
+                _c(
+                  "h1",
+                  { staticClass: "font-semibold text-2xl border-b pb-8" },
+                  [_vm._v("Order Summary")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "flex justify-between mt-10 mb-5" }, [
                   _c(
                     "span",
-                    { staticClass: "text-center w-1/5 font-semibold text-sm" },
-                    [_vm._v(_vm._s(_vm._f("showPrice")(cart.price)))]
+                    { staticClass: "font-semibold text-sm uppercase" },
+                    [_vm._v("Items " + _vm._s(_vm.carts.length || ""))]
+                  ),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "font-semibold text-sm" }, [
+                    _vm._v(_vm._s(_vm._f("showPrice")(_vm.totalItems)))
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase"
+                  },
+                  [_vm._v("Apply")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "border-t mt-8" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass:
+                        "flex font-semibold justify-between py-6 text-sm uppercase"
+                    },
+                    [
+                      _c("span", [_vm._v("Total cost")]),
+                      _vm._v(" "),
+                      _c("span", [
+                        _vm._v(_vm._s(_vm._f("showPrice")(_vm.total)) + " ")
+                      ])
+                    ]
                   ),
                   _vm._v(" "),
                   _c(
-                    "span",
-                    { staticClass: "text-center w-1/5 font-semibold text-sm" },
-                    [
-                      _vm._v(
-                        _vm._s(
-                          _vm._f("discount")(cart.total, _vm.discountPercentage)
-                        )
-                      )
-                    ]
+                    "button",
+                    {
+                      staticClass:
+                        "bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full",
+                      attrs: { href: "/place-order" }
+                    },
+                    [_vm._v("Checkout")]
                   )
-                ]
-              )
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "bg-blue-800 p-3 flex font-semibold text-white text-sm mt-10",
-                on: {
-                  click: function($event) {
-                    _vm.window.location = "home"
-                  }
-                }
-              },
-              [
-                _c(
-                  "svg",
-                  {
-                    staticClass: "fill-current mr-2 text-indigo-600 w-4",
-                    attrs: { viewBox: "0 0 448 512" }
-                  },
-                  [
-                    _c("path", {
-                      attrs: {
-                        d:
-                          "M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"
-                      }
-                    })
-                  ]
-                ),
-                _vm._v("\n         Continue Shopping\n       ")
+                ])
               ]
             )
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "w-1/4 px-8 py-10", attrs: { id: "summary" } },
-          [
-            _c("h1", { staticClass: "font-semibold text-2xl border-b pb-8" }, [
-              _vm._v("Order Summary")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex justify-between mt-10 mb-5" }, [
-              _c("span", { staticClass: "font-semibold text-sm uppercase" }, [
-                _vm._v("Items " + _vm._s(_vm.carts.length || ""))
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "font-semibold text-sm" }, [
-                _vm._v(_vm._s(_vm._f("showPrice")(_vm.totalItems)))
-              ])
-            ]),
-            _vm._v(" "),
-            _vm._m(1),
-            _vm._v(" "),
-            _vm._m(2),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase"
-              },
-              [_vm._v("Apply")]
-            ),
-            _vm._v(" "),
-            _c("div", { staticClass: "border-t mt-8" }, [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "flex font-semibold justify-between py-6 text-sm uppercase"
-                },
-                [
-                  _c("span", [_vm._v("Total cost")]),
-                  _vm._v(" "),
-                  _c("span", [
-                    _vm._v(_vm._s(_vm._f("showPrice")(_vm.total)) + " ")
-                  ])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full",
-                  attrs: { href: "/place-order" }
-                },
-                [_vm._v("Checkout")]
-              )
-            ])
-          ]
-        )
-      ])
-    ])
+          ])
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
