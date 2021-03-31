@@ -20,7 +20,7 @@
                     <td>1</td>
                     <td>59000</td>
                     </tr>
-                    <tr class="bg-blue-200">
+                    <tr>
                     <td>A Long and Winding Tour of the History of UI Frameworks and Tools and the Impact on Design</td>
                     <td>Adam</td>
                     <td>2</td>
@@ -38,6 +38,6 @@
 <script>
 
 export default {
-    name: 'OrderHistory'
+    name: 'OrderHistoryComponent'
 }
 </script>

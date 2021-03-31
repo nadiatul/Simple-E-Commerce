@@ -2053,96 +2053,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'NavComponent',
   data: function data() {
@@ -2157,7 +2067,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     logout: function logout() {
       axios.post("logout").then(function (response) {
-        console.log(response);
         window.location.href = "/home";
       })["catch"](function (error) {
         console.log(error);
@@ -39029,44 +38938,6 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-              },
-              [
-                _c("span", { staticClass: "sr-only" }, [
-                  _vm._v("View notifications")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "svg",
-                  {
-                    staticClass: "h-6 w-6",
-                    attrs: {
-                      xmlns: "http://www.w3.org/2000/svg",
-                      fill: "none",
-                      viewBox: "0 0 24 24",
-                      stroke: "currentColor",
-                      "aria-hidden": "true"
-                    }
-                  },
-                  [
-                    _c("path", {
-                      attrs: {
-                        "stroke-linecap": "round",
-                        "stroke-linejoin": "round",
-                        "stroke-width": "2",
-                        d:
-                          "M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                      }
-                    })
-                  ]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
                   "bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white",
                 on: {
                   click: function($event) {
@@ -39163,9 +39034,9 @@ var render = function() {
                     {
                       staticClass:
                         "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100",
-                      attrs: { href: "#", role: "menuitem" }
+                      attrs: { href: "/add-to-carts", role: "menuitem" }
                     },
-                    [_vm._v("Your Profile")]
+                    [_vm._v("My Cart")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -39196,127 +39067,7 @@ var render = function() {
               )
             ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "-mr-2 flex md:hidden" }, [
-          _c(
-            "button",
-            {
-              staticClass:
-                "bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white",
-              attrs: {
-                type: "button",
-                "aria-controls": "mobile-menu",
-                "aria-expanded": "false"
-              }
-            },
-            [
-              _c("span", { staticClass: "sr-only" }, [
-                _vm._v("Open main menu")
-              ]),
-              _vm._v(" "),
-              _c(
-                "svg",
-                {
-                  staticClass: "block h-6 w-6",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    fill: "none",
-                    viewBox: "0 0 24 24",
-                    stroke: "currentColor",
-                    "aria-hidden": "true"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      "stroke-linecap": "round",
-                      "stroke-linejoin": "round",
-                      "stroke-width": "2",
-                      d: "M4 6h16M4 12h16M4 18h16"
-                    }
-                  })
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "svg",
-                {
-                  staticClass: "hidden h-6 w-6",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    fill: "none",
-                    viewBox: "0 0 24 24",
-                    stroke: "currentColor",
-                    "aria-hidden": "true"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      "stroke-linecap": "round",
-                      "stroke-linejoin": "round",
-                      "stroke-width": "2",
-                      d: "M6 18L18 6M6 6l12 12"
-                    }
-                  })
-                ]
-              )
-            ]
-          )
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "md:hidden", attrs: { id: "mobile-menu" } }, [
-      _vm._m(2),
-      _vm._v(" "),
-      _c("div", { staticClass: "pt-4 pb-3 border-t border-gray-700" }, [
-        _c("div", { staticClass: "flex items-center px-5" }, [
-          _vm._m(3),
-          _vm._v(" "),
-          _vm._m(4),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass:
-                "ml-auto bg-gray-800 flex-shrink-0 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-            },
-            [
-              _c("span", { staticClass: "sr-only" }, [
-                _vm._v("View notifications")
-              ]),
-              _vm._v(" "),
-              _c(
-                "svg",
-                {
-                  staticClass: "h-6 w-6",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    fill: "none",
-                    viewBox: "0 0 24 24",
-                    stroke: "currentColor",
-                    "aria-hidden": "true"
-                  }
-                },
-                [
-                  _c("path", {
-                    attrs: {
-                      "stroke-linecap": "round",
-                      "stroke-linejoin": "round",
-                      "stroke-width": "2",
-                      d:
-                        "M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                    }
-                  })
-                ]
-              )
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _vm._m(5)
       ])
     ])
   ])
@@ -39365,131 +39116,6 @@ var staticRenderFns = [
             "px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white"
         },
         [_vm._v("\n              6\n            ")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "px-2 pt-2 pb-3 space-y-1 sm:px-3" }, [
-      _c(
-        "a",
-        {
-          staticClass:
-            "bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Dashboard")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass:
-            "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Team")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass:
-            "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Projects")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass:
-            "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Calendar")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass:
-            "text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Reports")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "flex-shrink-0" }, [
-      _c("img", {
-        staticClass: "h-10 w-10 rounded-full",
-        attrs: {
-          src:
-            "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-          alt: ""
-        }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "ml-3" }, [
-      _c(
-        "div",
-        { staticClass: "text-base font-medium leading-none text-white" },
-        [_vm._v("Tom Cook")]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "text-sm font-medium leading-none text-gray-400" },
-        [_vm._v("tom@example.com")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-3 px-2 space-y-1" }, [
-      _c(
-        "a",
-        {
-          staticClass:
-            "block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Your Profile")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass:
-            "block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Settings")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass:
-            "block px-3 py-2 rounded-md text-base font-medium text-gray-400 hover:text-white hover:bg-gray-700",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Sign out")]
       )
     ])
   }
@@ -39641,7 +39267,7 @@ var render = function() {
                   { staticClass: "flex justify-between border-b pb-8" },
                   [
                     _c("h1", { staticClass: "font-semibold text-2xl" }, [
-                      _vm._v("Shopping Car")
+                      _vm._v("Shopping Cart")
                     ]),
                     _vm._v(" "),
                     _vm.carts
@@ -40274,7 +39900,15 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "bg-white shadow-md overflow-hidden m-4" }, [
       _c("div", { staticClass: "md:flex" }, [
-        _vm._m(0),
+        _c("div", { staticClass: "md:flex-shrink-0" }, [
+          _c("img", {
+            staticClass: "h-48 w-full object-cover md:w-48",
+            attrs: {
+              src: _vm.product.image,
+              alt: "Man looking at item at a store"
+            }
+          })
+        ]),
         _vm._v(" "),
         _vm.product
           ? _c("div", { staticClass: "p-8" }, [
@@ -40341,23 +39975,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "md:flex-shrink-0" }, [
-      _c("img", {
-        staticClass: "h-48 w-full object-cover md:w-48",
-        attrs: {
-          src:
-            "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=889&q=80",
-          alt: "Man looking at item at a store"
-        }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

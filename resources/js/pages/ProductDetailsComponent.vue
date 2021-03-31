@@ -8,7 +8,7 @@
  <div class="bg-white shadow-md overflow-hidden m-4">   
     <div class="md:flex">
         <div class="md:flex-shrink-0">
-            <img class="h-48 w-full object-cover md:w-48" src="https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=889&q=80" alt="Man looking at item at a store">
+            <img class="h-48 w-full object-cover md:w-48" :src="product.image" alt="Man looking at item at a store">
         </div>
         <div class="p-8" v-if="product">
             <h1 class="text-xl font-bold">{{ product.name }}</h1>
