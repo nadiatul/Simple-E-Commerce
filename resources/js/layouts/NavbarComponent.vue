@@ -39,8 +39,7 @@ export default ({
   name: 'NavbarComponent',
   methods:{
     onClickFilter(type, id){
-      console.log('child', 'type',type,'value', id)
-           this.$emit('clickFilter', { type:type, id: id })
+        this.$emit('clickFilter', { type:type, id: id });
     }
   }
 });

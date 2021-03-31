@@ -2141,7 +2141,6 @@ __webpack_require__.r(__webpack_exports__);
   name: 'NavbarComponent',
   methods: {
     onClickFilter: function onClickFilter(type, id) {
-      console.log('child', 'type', type, 'value', id);
       this.$emit('clickFilter', {
         type: type,
         id: id
@@ -2273,7 +2272,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       axios.get('api/get-carts/' + this.user.id).then(function (response) {
-        console.log(response);
         _this2.carts = response.data;
 
         _this2.carts.forEach(function (element, index) {
@@ -2292,8 +2290,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this3 = this;
 
       axios["delete"]('api/delete-cart/' + $id).then(function (response) {
-        console.log(response);
-
         _this3.getList();
       }, function (error) {
         console.log(error);

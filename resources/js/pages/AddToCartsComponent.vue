@@ -98,7 +98,6 @@
     methods: {
       getList() {
         axios.get('api/get-carts/' + this.user.id).then((response)=>{
-          console.log(response)
           this.carts = response.data;
           this.carts.forEach((element, index)=>{
               this.carts[index] = {...element, price: element.product.price,total: element.product.price }
@@ -110,7 +109,6 @@
       },
       removeCart($id) {
         axios.delete('api/delete-cart/'+$id).then((response)=>{
-          console.log(response)
           this.getList()
         }, (error)=> {
             console.log(error)
