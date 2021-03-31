@@ -1,14 +1,13 @@
 # Simple-E-Commerce
- Simple-E-Commerce Laravel 8 + Vue 3 + TailwindCSS
 
-
-This is a simple E-Commerce system using Laravel 8 + Vue 3 + TailwindCSS 
+This is a Simple E-Commerce system using Laravel 8 + Vue 3 + TailwindCSS 
 
 In this E-commerce system we have few simple and basic functionality and features which are:-
 1. List of Products
-2. Add To Cart
-3. Login
+2. Filter By Brands and Category
+3. Add To Cart
 4. Register 
+5. Login
 
 Instruction
 ------------ 
