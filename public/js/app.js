@@ -1976,7 +1976,16 @@ var addToCartUrl = '/api/add-to-cart';
   filters: {
     discount: function discount(originalPrice, _discount) {
       var discountedPrice = _discount / 100 * originalPrice;
-      return 'RM ' + (originalPrice - discountedPrice).toFixed(2);
+      return originalPrice - discountedPrice;
+    },
+    showPrice: function showPrice(value) {
+      if (value) {
+        var price = Number(value);
+        return price.toLocaleString('en-MY', {
+          style: 'currency',
+          currency: 'MYR'
+        });
+      }
     }
   }
 });
@@ -2474,7 +2483,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'OrderHistory'
+  name: 'OrderHistoryComponent'
 });
 
 /***/ }),
@@ -38946,9 +38955,11 @@ var render = function() {
                         [
                           _vm._v(
                             _vm._s(
-                              _vm._f("discount")(
-                                product.price,
-                                _vm.discountPercentage
+                              _vm._f("showPrice")(
+                                _vm._f("discount")(
+                                  product.price,
+                                  _vm.discountPercentage
+                                )
                               )
                             )
                           )
@@ -40007,7 +40018,7 @@ var staticRenderFns = [
                 _c("td", [_vm._v("59000")])
               ]),
               _vm._v(" "),
-              _c("tr", { staticClass: "bg-blue-200" }, [
+              _c("tr", [
                 _c("td", [
                   _vm._v(
                     "A Long and Winding Tour of the History of UI Frameworks and Tools and the Impact on Design"

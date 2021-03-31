@@ -17,7 +17,7 @@
                     </div>
                     <img class="h-60 object-cover mt-2" :src="product.image">
                     <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
-                        <h1 class="text-gray-200 font-bold text-xl">{{ product.price | discount(discountPercentage) }}</h1>
+                        <h1 class="text-gray-200 font-bold text-xl">{{ product.price | discount(discountPercentage) | showPrice }}</h1>
                         <button @click="addToCart(product.id)" class="px-3 py-1 bg-yellow-500 text-sm text-gray-900 font-semibold text-white">
                             Add to cart
                         </button>
@@ -76,8 +76,17 @@ export default ({
     filters: {
         discount:((originalPrice, discount) => {
           let discountedPrice = (discount/100) * originalPrice 
-           return 'RM ' + (originalPrice - discountedPrice).toFixed(2);
-        })
+           return originalPrice - discountedPrice;
+        }),
+        showPrice: ((value) =>{
+          if(value){
+            let price = Number(value);
+            return (price).toLocaleString('en-MY', {
+              style: 'currency',
+              currency: 'MYR',
+            });
+          }
+        }), 
     }
 
 })
