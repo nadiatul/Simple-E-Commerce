@@ -1927,9 +1927,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 var getProductListUrl = '/api/products-list';
 var addToCartUrl = '/api/add-to-cart';
+var filterByCategory = '/api/product-category/';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'MainComponent',
   mounted: function mounted() {
@@ -1963,11 +1965,19 @@ var addToCartUrl = '/api/add-to-cart';
         productId: id,
         userId: this.user.id
       }).then(function (response) {
-        console.log(response);
         _this2.message = response.data.message;
         setTimeout(function () {
           _this2.message = null;
         }, 3000);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    onClickFilter: function onClickFilter(filter) {
+      var _this3 = this;
+
+      axios.get(filterByCategory + filter.type + '/' + filter.id).then(function (response) {
+        _this3.products = response.data;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2128,7 +2138,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: 'NavbarComponent'
+  name: 'NavbarComponent',
+  methods: {
+    onClickFilter: function onClickFilter(type, id) {
+      console.log('child', 'type', type, 'value', id);
+      this.$emit('clickFilter', {
+        type: type,
+        id: id
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2336,7 +2355,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     discount: function discount(originalPrice, _discount) {
       var discountedPrice = _discount / 100 * originalPrice;
-      return 'RM ' + (originalPrice - discountedPrice).toFixed(2);
+      return originalPrice - discountedPrice;
     }
   }
 });
@@ -38818,7 +38837,12 @@ var render = function() {
       : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "row mx-2" }, [
-      _c("div", { staticClass: "grid-cols-4" }, [_c("navbar-component")], 1),
+      _c(
+        "div",
+        { staticClass: "grid-cols-4" },
+        [_c("navbar-component", { on: { clickFilter: _vm.onClickFilter } })],
+        1
+      ),
       _vm._v(" "),
       _c(
         "div",
@@ -39142,29 +39166,21 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "bg-white shadow w-64 my-2" }, [
-        _c("ul", { staticClass: "list-reset" }, [
-          _c("li", { staticClass: "border-b" }, [
-            _c(
-              "p",
-              {
-                staticClass:
-                  "border-b-1 block py-4 px-3 text-grey-darker font-bold border-purple hover:bg-grey-lighter border-r-4",
-                attrs: { href: "#" }
-              },
-              [_c("b", [_vm._v("Category")])]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", [
+  return _c("div", [
+    _c("div", { staticClass: "bg-white shadow w-64 my-2" }, [
+      _c("ul", { staticClass: "list-reset" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            on: {
+              click: function($event) {
+                return _vm.onClickFilter("category", 1)
+              }
+            }
+          },
+          [
             _c(
               "a",
               {
@@ -39174,9 +39190,19 @@ var staticRenderFns = [
               },
               [_vm._v("Laptop")]
             )
-          ]),
-          _vm._v(" "),
-          _c("li", [
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            on: {
+              click: function($event) {
+                return _vm.onClickFilter("category", 2)
+              }
+            }
+          },
+          [
             _c(
               "a",
               {
@@ -39186,25 +39212,25 @@ var staticRenderFns = [
               },
               [_vm._v("Bag")]
             )
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "bg-white shadow w-64 my-2" }, [
-        _c("ul", { staticClass: "list-reset" }, [
-          _c("li", { staticClass: "border-b" }, [
-            _c(
-              "p",
-              {
-                staticClass:
-                  "border-b-1 block py-4 px-3 text-grey-darker font-bold border-purple hover:bg-grey-lighter border-r-4",
-                attrs: { href: "#" }
-              },
-              [_c("b", [_vm._v("Brand")])]
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", [
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "bg-white shadow w-64 my-2" }, [
+      _c("ul", { staticClass: "list-reset" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            on: {
+              click: function($event) {
+                return _vm.onClickFilter("brand", 1)
+              }
+            }
+          },
+          [
             _c(
               "a",
               {
@@ -39214,9 +39240,19 @@ var staticRenderFns = [
               },
               [_vm._v("Dell")]
             )
-          ]),
-          _vm._v(" "),
-          _c("li", [
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            on: {
+              click: function($event) {
+                return _vm.onClickFilter("brand", 2)
+              }
+            }
+          },
+          [
             _c(
               "a",
               {
@@ -39226,9 +39262,43 @@ var staticRenderFns = [
               },
               [_vm._v("HP")]
             )
-          ])
-        ])
+          ]
+        )
       ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "border-b" }, [
+      _c(
+        "p",
+        {
+          staticClass:
+            "border-b-1 block py-4 px-3 text-grey-darker font-bold border-purple hover:bg-grey-lighter border-r-4",
+          attrs: { href: "#" }
+        },
+        [_c("b", [_vm._v("Category")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "border-b" }, [
+      _c(
+        "p",
+        {
+          staticClass:
+            "border-b-1 block py-4 px-3 text-grey-darker font-bold border-purple hover:bg-grey-lighter border-r-4",
+          attrs: { href: "#" }
+        },
+        [_c("b", [_vm._v("Brand")])]
+      )
     ])
   }
 ]
@@ -39391,9 +39461,11 @@ var render = function() {
                         [
                           _vm._v(
                             _vm._s(
-                              _vm._f("discount")(
-                                cart.total,
-                                _vm.discountPercentage
+                              _vm._f("showPrice")(
+                                _vm._f("discount")(
+                                  cart.total,
+                                  _vm.discountPercentage
+                                )
                               )
                             )
                           )

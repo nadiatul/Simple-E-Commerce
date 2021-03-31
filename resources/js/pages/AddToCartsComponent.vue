@@ -34,7 +34,7 @@
             </svg>
           </div>
           <span class="text-center w-1/5 font-semibold text-sm">{{ cart.price | showPrice }}</span>
-          <span class="text-center w-1/5 font-semibold text-sm">{{ cart.total | discount(discountPercentage) }}</span>
+          <span class="text-center w-1/5 font-semibold text-sm">{{ cart.total | discount(discountPercentage) | showPrice }}</span>
         </div>
 
         <button @click="goToHome()" class="bg-blue-800 p-3 flex font-semibold text-white text-sm mt-10">
@@ -74,95 +74,96 @@
 </template>
 <script>
 
-    export default {
-      name: 'AddToCartsComponent',
-      mounted: function() { 
-        axios.get('/api/get-membership-discount/'+ this.user.id)
-        .then((response) => { 
-                this.discountPercentage = response.data.discount_percent;
-                this.getList();
-        }, (error)=> { console.log(error) } )
-      },
-      props:['user'],
-      data: () => {
-        return { 
-            'carts': null,
-            'quantity': [],
-            'refresh': true,
-            'discountPercentage': null,
-            'totalPrice': null,
-            'totalItems': null,
-            'total': null,
-          }
-      },
-      methods: {
-        getList() {
-          axios.get('api/get-carts/' + this.user.id).then((response)=>{
-            console.log(response)
-            this.carts = response.data;
-            this.carts.forEach((element, index)=>{
-                this.carts[index] = {...element, price: element.product.price,total: element.product.price }
-            })
-            this.calculateTotal();
-          }, (error)=> {
-              console.log(error)
-          })
-        },
-        removeCart($id) {
-          axios.delete('api/delete-cart/'+$id).then((response)=>{
-            console.log(response)
-            this.getList()
-          }, (error)=> {
-              console.log(error)
-          })
-        },
-        increaseQuantity(index){
-          this.carts[index].quantity+=1;
-          this.calculateTotalItem(index);
-          this.calculateTotal(index);
-          this.refreshData();
-        },
-        descreaseQuantity(index){
-          this.carts[index].quantity-=1;
-          this.calculateTotalItem(index)
-          this.calculateTotal(index);
-          this.refreshData();
-        },
-        calculateTotalItem(index) {
-           this.carts[index].total = this.carts[index].price * this.carts[index].quantity;
-        },
-        calculateTotal(index){
-          const sumPrice = this.carts.map((e=> e.price ));
-          const sumItems = this.carts.map((e=> e.total ));
-          this.totalPrice = sumPrice.reduce((sum, x) => Number(sum) + Number(x));
-          this.totalItems = sumItems.reduce((sum, x) => Number(sum) + Number(x));
-          const discountPrice = (this.discountPercentage/100) * this.totalItems;
-          const shippingFee = 10.00
-          this.total = this.totalItems -(discountPrice + shippingFee)
-        },
-        refreshData() {
-          this.refresh = false;
-          setTimeout(()=>{
-              this.refresh = true;
-          },10)
-        },
-        goToHome() {
-          window.location.href='/home'
+  export default {
+    name: 'AddToCartsComponent',
+    mounted: function() { 
+      axios.get('/api/get-membership-discount/'+ this.user.id)
+      .then((response) => { 
+              this.discountPercentage = response.data.discount_percent;
+              this.getList();
+      }, (error)=> { console.log(error) } )
+    },
+    props:['user'],
+    data: () => {
+      return { 
+          'carts': null,
+          'quantity': [],
+          'refresh': true,
+          'discountPercentage': null,
+          'totalPrice': null,
+          'totalItems': null,
+          'total': null,
         }
-    },filters: {
-        showPrice: ((value) =>{
-          if(value){
-            let price = Number(value);
-            return (price).toLocaleString('en-MY', {
-              style: 'currency',
-              currency: 'MYR',
-            });
-          }
-        }),      
-        discount:((originalPrice, discount) => {
-          let discountedPrice = (discount/100) * originalPrice 
-           return 'RM ' + (originalPrice - discountedPrice).toFixed(2);
+    },
+    methods: {
+      getList() {
+        axios.get('api/get-carts/' + this.user.id).then((response)=>{
+          console.log(response)
+          this.carts = response.data;
+          this.carts.forEach((element, index)=>{
+              this.carts[index] = {...element, price: element.product.price,total: element.product.price }
+          })
+          this.calculateTotal();
+        }, (error)=> {
+            console.log(error)
         })
-    }
+      },
+      removeCart($id) {
+        axios.delete('api/delete-cart/'+$id).then((response)=>{
+          console.log(response)
+          this.getList()
+        }, (error)=> {
+            console.log(error)
+        })
+      },
+      increaseQuantity(index){
+        this.carts[index].quantity+=1;
+        this.calculateTotalItem(index);
+        this.calculateTotal(index);
+        this.refreshData();
+      },
+      descreaseQuantity(index){
+        this.carts[index].quantity-=1;
+        this.calculateTotalItem(index)
+        this.calculateTotal(index);
+        this.refreshData();
+      },
+      calculateTotalItem(index) {
+          this.carts[index].total = this.carts[index].price * this.carts[index].quantity;
+      },
+      calculateTotal(index){
+        const sumPrice = this.carts.map((e=> e.price ));
+        const sumItems = this.carts.map((e=> e.total ));
+        this.totalPrice = sumPrice.reduce((sum, x) => Number(sum) + Number(x));
+        this.totalItems = sumItems.reduce((sum, x) => Number(sum) + Number(x));
+        const discountPrice = (this.discountPercentage/100) * this.totalItems;
+        const shippingFee = 10.00
+        this.total = this.totalItems -(discountPrice + shippingFee)
+      },
+      refreshData() {
+        this.refresh = false;
+        setTimeout(()=>{
+            this.refresh = true;
+        },10)
+      },
+      goToHome() {
+        window.location.href='/home'
+      }
+  },
+  filters: {
+      showPrice: ((value) =>{
+        if(value){
+          let price = Number(value);
+          return (price).toLocaleString('en-MY', {
+            style: 'currency',
+            currency: 'MYR',
+          });
+        }
+      }),      
+      discount:((originalPrice, discount) => {
+        let discountedPrice = (discount/100) * originalPrice 
+          return originalPrice - discountedPrice
+      })
+  }
 }
 </script>

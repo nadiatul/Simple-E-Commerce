@@ -16,4 +16,17 @@ class ProductController extends Controller
         $product = Product::find($id);
         return $product;
     }
+
+    public function filterByCategory($category,$id) {
+        $field = '';
+        
+        if($category == 'category'){
+            $field = 'categories_id';
+        } else {    
+            $field = 'brands_id';
+        }
+        
+        $product = Product::where('categories_id', $id)->get();
+        return $product;
+    }
 }

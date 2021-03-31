@@ -4,10 +4,10 @@
         <div class="row mx-2">
             {{ message }} 
         </div>
-    </div>
+      </div>
       <div class="row mx-2">
           <div class="grid-cols-4">
-                <navbar-component/>
+                <navbar-component @clickFilter="onClickFilter"/>
           </div>
           <div class="grid-cols-8">
             <div class="inline-block mx-2" v-for="product in products" :key="product.id">
@@ -28,11 +28,12 @@
     </div>
   </main>
 </template>
-<script>
 
+<script>
 window.axios = require('axios');
 var getProductListUrl = '/api/products-list'
 var addToCartUrl = '/api/add-to-cart'
+var filterByCategory = '/api/product-category/'
 export default ({
     name: 'MainComponent',
     mounted: function(){
@@ -63,11 +64,18 @@ export default ({
                 userId: this.user.id
                 })
             .then((response) => {
-                console.log(response)
                 this.message = response.data.message;
                 setTimeout(()=>{
                     this.message = null;
                 }, 3000);
+            }).catch((error) => {
+                console.log(error)
+            })
+        },
+        onClickFilter(filter) {
+            axios.get(filterByCategory + filter.type+'/' + filter.id )
+            .then((response) => { 
+                 this.products = response.data;
             }).catch((error) => {
                 console.log(error)
             })
