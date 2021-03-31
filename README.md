@@ -23,11 +23,6 @@ Instruction
 9. php artisan serve 
 10. Register as a user to view the products
 
-
-I'm extremely appologized that I'm encountered A Technical Issues where the Vue files I'm working with is not rendered properly.. I tried looking for the options.. But it quite challenging since I'm new with Vue JS & TailwindCSS. Btw, this is the first I'm doing it. 
-
-But it pretty interesting despite of the challenge.
-
 This is the Product List:  
 ![alt text](https://www.linkpicture.com/q/ProductList.png)
 
