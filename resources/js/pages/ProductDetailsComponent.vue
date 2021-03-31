@@ -5,10 +5,11 @@
         {{ message }} 
     </div>
  </div>
- <div class="bg-white shadow-md overflow-hidden m-4">   
+ <div class="bg-white shadow-md overflow-hidden m-4" v-if="product">   
     <div class="md:flex">
         <div class="md:flex-shrink-0">
-            <img class="h-48 w-full object-cover md:w-48" :src="product.image" alt="Man looking at item at a store">
+            
+            <img class="h-48 w-full object-cover md:w-48" :src="product.image">
         </div>
         <div class="p-8" v-if="product">
             <h1 class="text-xl font-bold">{{ product.name }}</h1>
@@ -31,14 +32,15 @@
 var addToCartUrl = '/api/add-to-cart'
 export default ({
     name: 'ProductDetailsComponent',
-    props: ['user'],
+    props: ['user','productId'],
     mounted() {
-        axios.get('/api/product/' + this.user.id).
+        axios.get('/api/product/' + this.productId).
         then((response) => {
             this.product = response.data;
         }, (error)=> {
             console.log(error)
         })
+        console.log('productId', this.productId);
     },
     data: () => {
         return {

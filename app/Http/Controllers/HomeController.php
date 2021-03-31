@@ -30,9 +30,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function productDetails()
+    public function productDetails($id)
     {
-        return view('productDetails');
+        return view('productDetails')->with('id', $id);
     }   
 
     /**
@@ -57,8 +57,6 @@ class HomeController extends Controller
 
     public function addToCarts()
     {
-        // $userId = Auth::user()->id;
-        // $carts = AddToCart::where('user_id', $userId)->get();
         return view('addToCarts');
     } 
 }

@@ -13,7 +13,7 @@
             <div class="inline-block mx-2" v-for="product in products" :key="product.id">
                 <div class="max-w-xs bg-white shadow-md overflow-hidden my-2">
                     <div class="px-4">
-                        <a href="/product-details" class="text-gray-900 font-bold text-3xl">{{ product.name }}</a>
+                        <a :href="'/product-details/' + product.id" class="text-gray-900 font-bold text-3xl">{{ product.name }}</a>
                     </div>
                     <img class="h-60 object-cover mt-2" :src="product.image">
                     <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
