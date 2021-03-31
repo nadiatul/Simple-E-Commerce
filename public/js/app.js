@@ -2406,6 +2406,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       setTimeout(function () {
         _this4.refresh = true;
       }, 10);
+    },
+    goToHome: function goToHome() {
+      window.location.href = '/home';
     }
   },
   filters: {
@@ -39612,7 +39615,7 @@ var render = function() {
                       _c("div", { staticClass: "flex w-2/5" }, [
                         _c("div", { staticClass: "w-20" }, [
                           _c("img", {
-                            staticClass: "h-24",
+                            staticClass: "h-18",
                             attrs: { src: cart.product.image, alt: "" }
                           })
                         ]),
@@ -39730,7 +39733,7 @@ var render = function() {
                       "bg-blue-800 p-3 flex font-semibold text-white text-sm mt-10",
                     on: {
                       click: function($event) {
-                        _vm.window.location = "home"
+                        return _vm.goToHome()
                       }
                     }
                   },

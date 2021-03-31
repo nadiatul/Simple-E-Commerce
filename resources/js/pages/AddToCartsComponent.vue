@@ -16,7 +16,7 @@
         <div class="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5" v-for="(cart,index) in carts" v-bind:key="cart.id">
           <div class="flex w-2/5">
             <div class="w-20">
-              <img class="h-24" :src="cart.product.image" alt="">
+              <img class="h-18" :src="cart.product.image" alt="">
             </div>
             <div class="flex flex-col justify-between ml-4 flex-grow">
               <span class="font-bold text-sm">{{ cart.product.name }}</span>
@@ -37,7 +37,7 @@
           <span class="text-center w-1/5 font-semibold text-sm">{{ cart.total | discount(discountPercentage) }}</span>
         </div>
 
-        <button @click="window.location='home'" class="bg-blue-800 p-3 flex font-semibold text-white text-sm mt-10">
+        <button @click="goToHome()" class="bg-blue-800 p-3 flex font-semibold text-white text-sm mt-10">
           <svg class="fill-current mr-2 text-indigo-600 w-4" viewBox="0 0 448 512"><path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z"/></svg>
           Continue Shopping
         </button>
@@ -156,6 +156,9 @@
           setTimeout(()=>{
               this.refresh = true;
           },10)
+        },
+        goToHome() {
+          window.location.href='/home'
         }
     },filters: {
         showPrice: ((value) =>{
