@@ -25,4 +25,11 @@ class Product extends Model
         'categories_id',
         'suppliers_id',
     ];
+
+    /**
+     * Get the Product associated with the addToCart.
+     */
+    public function addToCart() {
+        return $this->belongsTo(AddToCart::class);
+    }
 }

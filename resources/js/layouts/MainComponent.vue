@@ -41,8 +41,10 @@ export default ({
         }, (error)=> {
             console.log(error)
         })
-        axios.get(this.getMembershipDiscountUrl).then((response) => { 
-        this.discountPercentage = response.data.discount_percent;
+
+        axios.get(this.getMembershipDiscountUrl)
+        .then((response) => { 
+                this.discountPercentage = response.data.discount_percent;
         }, (error)=> { console.log(error) } )   
     },
     props:['user','session'],
@@ -56,23 +58,23 @@ export default ({
     },
     methods:{
         addToCart(id) {
-        axios.post(addToCartUrl, {
-            productId: id, 
-            userId: this.user.id
+            axios.post(addToCartUrl, {
+                productId: id, 
+                userId: this.user.id
+                })
+            .then((response) => {
+                console.log(response)
+                this.message = response.data.message;
+                setTimeout(()=>{
+                    this.message = null;
+                }, 3000);
+            }).catch((error) => {
+                console.log(error)
             })
-        .then((response) => {
-            console.log(response)
-            this.message = response.data.message;
-            setTimeout(()=>{
-                this.message = null;
-            }, 3000);
-        }).catch((error) => {
-            console.log(error)
-        })
         }
     },
     filters: {
-        discount:((originalPrice, discount)=>{
+        discount:((originalPrice, discount) => {
           let discountedPrice = (discount/100) * originalPrice 
            return 'RM ' + (originalPrice - discountedPrice).toFixed(2);
         })

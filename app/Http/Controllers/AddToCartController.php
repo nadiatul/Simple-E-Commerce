@@ -25,8 +25,14 @@ class AddToCartController extends Controller
 
     public function getCartList($userId)
     {
-        $carts = AddToCart::where('user_id', $userId)->get();
+        $carts = AddToCart::with('product')->where('user_id', $userId)->get();
         return $carts;
+    } 
+    
+    
+    public function delete($id)
+    {
+        AddToCart::destroy($id);
     } 
 
     public function store(Request $request) {
