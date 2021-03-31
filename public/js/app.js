@@ -39590,9 +39590,11 @@ var render = function() {
                       _vm._v("Shopping Car")
                     ]),
                     _vm._v(" "),
-                    _c("h2", { staticClass: "font-semibold text-2xl" }, [
-                      _vm._v(_vm._s(_vm.carts.length || "") + " Items")
-                    ])
+                    _vm.carts
+                      ? _c("h2", { staticClass: "font-semibold text-2xl" }, [
+                          _vm._v(_vm._s(_vm.carts.length) + " Items")
+                        ])
+                      : _vm._e()
                   ]
                 ),
                 _vm._v(" "),
@@ -39766,11 +39768,13 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "flex justify-between mt-10 mb-5" }, [
-                  _c(
-                    "span",
-                    { staticClass: "font-semibold text-sm uppercase" },
-                    [_vm._v("Items " + _vm._s(_vm.carts.length || ""))]
-                  ),
+                  _vm.carts
+                    ? _c(
+                        "span",
+                        { staticClass: "font-semibold text-sm uppercase" },
+                        [_vm._v("Items " + _vm._s(_vm.carts.length))]
+                      )
+                    : _vm._e(),
                   _vm._v(" "),
                   _c("span", { staticClass: "font-semibold text-sm" }, [
                     _vm._v(_vm._s(_vm._f("showPrice")(_vm.totalItems)))
