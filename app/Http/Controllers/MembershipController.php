@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use\Models\Membership;
-use\Models\User;
-
+use App\Models\Membership;
+use App\Models\User;
 class MembershipController extends Controller
 {
     //
 
     public function getMembershipDscount($userId) {
-        $membership = User::where('id', $userId)->membership();
-        return $membership->discount_percent;
+        $id = $userId;
+        $membership = User::find($id)->membership;
+        return $membership;
     }
 }

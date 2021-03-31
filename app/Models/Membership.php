@@ -18,4 +18,9 @@ class Membership extends Model
         'description',
         'discount_percent'
     ];
+
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
 }

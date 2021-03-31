@@ -45,8 +45,8 @@ class User extends Authenticatable
     /**
      * Get the Membership associated with the user.
      */
-    public function membership()
-    {
-        return $this->hasOne(Membership::class);
+    
+    public function membership() {
+        return $this->belongsTo(Membership::class);
     }
 }

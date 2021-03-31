@@ -147,15 +147,16 @@ export default({
           hideProfile: true
         } 
       },
+      props:[
+        'username'
+      ],
       methods: {
         clickProfile() {
           this.hideProfile = this.hideProfile ? false: true;
-          console.log('is click', this.hideProfile);
         },
         logout(){
           axios.post("logout").then(response => { 
             console.log(response);
-          //  this.$router.push('home')
           window.location.href = "/home"
           })
           .catch(error => {
@@ -165,9 +166,6 @@ export default({
         addToCartDetails(){
             window.location = "/add-to-carts";
         }
-      },
-      props:[
-        'username'
-      ]
+      }
 })
 </script>
