@@ -1928,7 +1928,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 var getProductListUrl = '/api/products-list';
 var addToCartUrl = '/api/add-to-cart';
 var filterByCategory = '/api/product-category/';
@@ -2560,7 +2559,6 @@ var addToCartUrl = '/api/add-to-cart';
         productId: id,
         userId: this.user.id
       }).then(function (response) {
-        console.log(response);
         _this2.message = response.data.message;
         setTimeout(function () {
           _this2.message = null;
@@ -39181,8 +39179,7 @@ var render = function() {
               "a",
               {
                 staticClass:
-                  "block p-3 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4",
-                attrs: { href: "#" }
+                  "block p-3 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4"
               },
               [_vm._v("Laptop")]
             )
@@ -39203,8 +39200,7 @@ var render = function() {
               "a",
               {
                 staticClass:
-                  "block p-3 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4",
-                attrs: { href: "#" }
+                  "block p-3 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4"
               },
               [_vm._v("Bag")]
             )
@@ -39231,8 +39227,7 @@ var render = function() {
               "a",
               {
                 staticClass:
-                  "block p-3 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4",
-                attrs: { href: "#" }
+                  "block p-3 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4"
               },
               [_vm._v("Dell")]
             )
@@ -39253,8 +39248,7 @@ var render = function() {
               "a",
               {
                 staticClass:
-                  "block p-3 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4",
-                attrs: { href: "#" }
+                  "block p-3 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4"
               },
               [_vm._v("HP")]
             )
@@ -39290,8 +39284,7 @@ var staticRenderFns = [
         "p",
         {
           staticClass:
-            "border-b-1 block py-4 px-3 text-grey-darker font-bold border-purple hover:bg-grey-lighter border-r-4",
-          attrs: { href: "#" }
+            "border-b-1 block py-4 px-3 text-grey-darker font-bold border-purple hover:bg-grey-lighter border-r-4"
         },
         [_c("b", [_vm._v("Brand")])]
       )

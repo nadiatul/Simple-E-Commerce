@@ -30,7 +30,7 @@
 </template>
 
 <script>
-window.axios = require('axios');
+
 var getProductListUrl = '/api/products-list'
 var addToCartUrl = '/api/add-to-cart'
 var filterByCategory = '/api/product-category/'

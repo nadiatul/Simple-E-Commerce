@@ -53,7 +53,6 @@ export default ({
                 userId: this.user.id
                 })
             .then((response) => {
-                console.log(response)
                 this.message = response.data.message;
                 setTimeout(()=>{
                     this.message = null;
