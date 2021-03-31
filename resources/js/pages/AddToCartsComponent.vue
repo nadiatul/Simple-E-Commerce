@@ -77,14 +77,11 @@
     export default {
       name: 'AddToCartsComponent',
       mounted: function() { 
-        this.getList();
-        
         axios.get('/api/get-membership-discount/'+ this.user.id)
         .then((response) => { 
                 this.discountPercentage = response.data.discount_percent;
+                this.getList();
         }, (error)=> { console.log(error) } )
-
-        
       },
       props:['user'],
       data: () => {
@@ -132,15 +129,24 @@
           const sumItems = this.carts.map((e=> e.total ));
           this.totalPrice = sumPrice.reduce((sum, x) => Number(sum) + Number(x));
           this.totalItems = sumItems.reduce((sum, x) => Number(sum) + Number(x));
-          this.total = (this.discountPercentage/100) * this.totalItems
-          this.total = this.total - this.discountPercentage
-
+          const discountPrice = (this.discountPercentage/100) * this.totalItems;
+          const shippingFee = 10.00
+          this.total = this.totalItems -(discountPrice + shippingFee)
+          console.log(
+            'discountPercentage',this.discountPercentage,
+            'totalPrice',this.totalPrice,
+            'totalItems',this.totalItems,
+            'total',this.total,
+          )
         }
     },filters: {
         showPrice: ((value) =>{
           if(value){
             let price = Number(value);
-            return 'RM ' + (price).toFixed(2)
+            return (price).toLocaleString('en-MY', {
+              style: 'currency',
+              currency: 'MYR',
+            });
           }
         }),      
         discount:((originalPrice, discount) => {

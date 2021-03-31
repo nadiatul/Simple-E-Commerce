@@ -2311,9 +2311,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   mounted: function mounted() {
     var _this = this;
 
-    this.getList();
     axios.get('/api/get-membership-discount/' + this.user.id).then(function (response) {
       _this.discountPercentage = response.data.discount_percent;
+
+      _this.getList();
     }, function (error) {
       console.log(error);
     });
@@ -2381,15 +2382,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.totalItems = sumItems.reduce(function (sum, x) {
         return Number(sum) + Number(x);
       });
-      this.total = this.discountPercentage / 100 * this.totalItems;
-      this.total = this.total - this.discountPercentage;
+      var discountPrice = this.discountPercentage / 100 * this.totalItems;
+      var shippingFee = 10.00;
+      this.total = this.totalItems - (discountPrice + shippingFee);
+      console.log('discountPercentage', this.discountPercentage, 'totalPrice', this.totalPrice, 'totalItems', this.totalItems, 'total', this.total);
     }
   },
   filters: {
     showPrice: function showPrice(value) {
       if (value) {
         var price = Number(value);
-        return 'RM ' + price.toFixed(2);
+        return price.toLocaleString('en-MY', {
+          style: 'currency',
+          currency: 'MYR'
+        });
       }
     },
     discount: function discount(originalPrice, _discount) {
