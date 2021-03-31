@@ -20,10 +20,10 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
             </button>
-              <span class="">
-              <div class="px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white">
-                6
-              </div>
+              <span class="cart-badge">
+                <div class="cart-badge-number px-1.5 py-0.5 border-2 border-white rounded-full text-xs font-semibold leading-4 bg-red-500 text-white">
+                  6
+                </div>
             </span>
 
             <!-- Profile dropdown -->
@@ -78,3 +78,17 @@ export default({
       }
 })
 </script>
+<style>
+
+.cart-badge {
+
+right:10px;
+}
+.cart-badge-number {
+  position: absolute;
+  right: 141px;
+  top: 35px;
+}
+
+
+</style>
