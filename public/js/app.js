@@ -2405,6 +2405,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'OrderHistoryComponent'
 });
@@ -40101,51 +40109,75 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("main", [
-      _c("div", { staticClass: "bg-white shadow-md overflow-hidden m-4" }, [
+      _c("div", { staticClass: "overflow-hidden" }, [
         _c("div", { staticClass: "container mx-auto mt-10" }, [
-          _c("table", { staticClass: "table-fixed" }, [
-            _c("thead", [
-              _c("tr", [
-                _c("th", { staticClass: "w-1/2" }, [_vm._v("No")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "w-1/4" }, [_vm._v("Name")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "w-1/4" }, [_vm._v("Amount")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "w-1/4" }, [_vm._v("Quantity")]),
-                _vm._v(" "),
-                _c("th", { staticClass: "w-1/4" }, [_vm._v("Price")])
-              ])
+          _c("div", { staticClass: "bg-white shadow-md my-2 p-3 text-right" }, [
+            _c("h3", { staticClass: "font-bold my-2 text-left" }, [
+              _vm._v("Order Number")
             ]),
             _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
-                _c("td", [_vm._v("Intro to CSS")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Adam")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("59000")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("1")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("59000")])
+            _c("p", { staticClass: "my-2 text-left" }, [
+              _vm._v("Placed on 27 Mar 2021")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "grid grid-cols-5" }, [
+              _c("div"),
+              _vm._v(" "),
+              _c("div", { staticClass: "font-bold" }, [_vm._v("Price")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "font-bold" }, [_vm._v("Qty")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "font-bold" }, [_vm._v("Total")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "font-bold" }, [_vm._v("Status")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "grid grid-cols-5 my-3" }, [
+              _c("div", [
+                _c("img", {
+                  attrs: {
+                    src:
+                      "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=889&q=80"
+                  }
+                })
               ]),
               _vm._v(" "),
-              _c("tr", [
-                _c("td", [
-                  _vm._v(
-                    "A Long and Winding Tour of the History of UI Frameworks and Tools and the Impact on Design"
-                  )
-                ]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Adam")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("2")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("2")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("2")])
-              ])
+              _c("div", [_vm._v("RM 2,000.00")]),
+              _vm._v(" "),
+              _c("div", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("div", [_vm._v("RM 2,000.00")]),
+              _vm._v(" "),
+              _c("div", [_vm._v("Paid")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "grid grid-cols-5 my-3" }, [
+              _c("div", [
+                _c("img", {
+                  attrs: {
+                    src:
+                      "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=889&q=80"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", [_vm._v("RM 2,000.00")]),
+              _vm._v(" "),
+              _c("div", [_vm._v("1")]),
+              _vm._v(" "),
+              _c("div", [_vm._v("RM 2,000.00")]),
+              _vm._v(" "),
+              _c("div", [_vm._v("Paid")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-right" }, [
+              _c("p", [_vm._v("Subtotal: RM 2,000")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Shipping Fees: RM 2,000")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("Discount: RM 2,000")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "font-bold" }, [_vm._v("Total: RM 2,000")])
             ])
           ])
         ])
