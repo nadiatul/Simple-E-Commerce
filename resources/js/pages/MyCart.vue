@@ -43,8 +43,8 @@
                             </div>
                         </div>
                     </td>
-                    <td>{{ cart.price | showPrice }}</td>
-                    <td>{{ cart.total | discount(discountPercentage) | showPrice }}</td>
+                    <td>{{ cart.price | price }}</td>
+                    <td>{{ cart.total | discount(discountPercentage) | price }}</td>
                     <td> <button class="btn btn-danger" @click="removeCart(cart.id)">Remove</button></td>
                 </tr>
                 <tr>
@@ -52,8 +52,8 @@
                     <td></td>
                     <td></td>
                     <td>Order Summary :</td>
-                    <td>Items Qty({{ carts.length }}) </td>
-                    <td>{{ totalItems | showPrice }}</td>
+                    <td v-if="carts">Items Qty({{ carts.length }}) </td>
+                    <td>{{ totalItems | price }}</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -69,7 +69,7 @@
                     <td></td>
                     <td></td>
                     <td>Total Discount</td>
-                    <td>{{ discountPrice | showPrice }}</td>
+                    <td>{{ discountPrice | price }}</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -77,7 +77,7 @@
                     <td></td>
                     <td></td>
                     <td>Total</td>
-                    <td>{{ total | showPrice }}</td>
+                    <td>{{ total | price }}</td>
                 </tr>
                 <tr>
                     <td></td>
@@ -120,12 +120,11 @@
  </main>
 </template>
 <script>
-
+  var CartService = require('../services/CartService');
   export default {
     name: 'Cart',
     mounted: function() {
-      axios.get('/api/get-membership-discount/'+ this.user.id)
-      .then((response) => {
+      CartService.getMembershipDiscount(this.user.id).then((response) => {
               this.discountPercentage = response.data.discount_percent;
               this.getList();
       }, (error)=> { console.log(error) } )
@@ -145,7 +144,7 @@
     },
     methods: {
       getList() {
-        axios.get('api/get-carts/' + this.user.id).then((response)=>{
+        CartService.getCart(this.user.id).then((response) =>{
           this.carts = response.data;
           this.carts.forEach((element, index)=>{
               this.carts[index] = {...element, price: element.product.price,total: element.product.price }
@@ -156,7 +155,7 @@
         })
       },
       removeCart($id) {
-        axios.delete('api/delete-cart/'+$id).then((response)=>{
+        CartService.deleteCart($id).then((response)=>{
           this.getList()
         }, (error)=> {
             console.log(error)

@@ -37,10 +37,8 @@
  </main>
 </template>
 
-
 <script>
-
-export default {
-    name: 'OrderHistory'
-}
+    export default {
+        name: 'OrderHistory'
+    }
 </script>

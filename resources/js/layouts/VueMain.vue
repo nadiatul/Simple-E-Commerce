@@ -19,7 +19,7 @@
                             </div>
                             <img class="img-fluid img-thumbnail" :src="product.image">
                             <div class="">
-                                <p class="">{{ product.price | discount(discountPercentage) | showPrice }}</p>
+                                <p class="">{{ product.price | discount(discountPercentage) | price }}</p>
                                 <button @click="addToCart(product.id)" class="btn btn-success">
                                     Add to cart
                                 </button>

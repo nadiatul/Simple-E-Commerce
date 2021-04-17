@@ -12,7 +12,7 @@
         </div>
         <div class="p-8" v-if="product">
             <h1 class="text-xl font-bold">{{ product.name }}</h1>
-            <h1 class="font-bold text-xl">{{ product.price | showPrice }} </h1>
+            <h1 class="font-bold text-xl">{{ product.price | price }} </h1>
             <button @click="addToCart(product.id)" class="btn btn-success">
              Add to cart
             </button>
@@ -25,12 +25,13 @@
  </main>
 </template>
 <script>
+var ProductService = require ('../services/ProductService');
 var addToCartUrl = '/api/add-to-cart'
 export default ({
     name: 'ProductDetail',
     props: ['user','productId'],
     mounted() {
-        axios.get('/api/product/' + this.productId).
+        ProductService.getProduct(this.productId).
         then((response) => {
             this.product = response.data;
         }, (error)=> {

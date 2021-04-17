@@ -2262,12 +2262,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+var CartService = __webpack_require__(/*! ../services/CartService */ "./resources/js/services/CartService.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'Cart',
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/api/get-membership-discount/' + this.user.id).then(function (response) {
+    CartService.getMembershipDiscount(this.user.id).then(function (response) {
       _this.discountPercentage = response.data.discount_percent;
 
       _this.getList();
@@ -2292,7 +2294,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getList: function getList() {
       var _this2 = this;
 
-      axios.get('api/get-carts/' + this.user.id).then(function (response) {
+      CartService.getCart(this.user.id).then(function (response) {
         _this2.carts = response.data;
 
         _this2.carts.forEach(function (element, index) {
@@ -2310,7 +2312,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     removeCart: function removeCart($id) {
       var _this3 = this;
 
-      axios["delete"]('api/delete-cart/' + $id).then(function (response) {
+      CartService.deleteCart($id).then(function (response) {
         _this3.getList();
       }, function (error) {
         console.log(error);
@@ -2508,7 +2510,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'OrderHistory'
 });
@@ -2552,6 +2553,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+var ProductService = __webpack_require__(/*! ../services/ProductService */ "./resources/js/services/ProductService.js");
+
 var addToCartUrl = '/api/add-to-cart';
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ProductDetail',
@@ -2559,7 +2562,7 @@ var addToCartUrl = '/api/add-to-cart';
   mounted: function mounted() {
     var _this = this;
 
-    axios.get('/api/product/' + this.productId).then(function (response) {
+    ProductService.getProduct(this.productId).then(function (response) {
       _this.product = response.data;
     }, function (error) {
       console.log(error);
@@ -2660,9 +2663,60 @@ vue__WEBPACK_IMPORTED_MODULE_2__.default.component('order', __webpack_require__(
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+vue__WEBPACK_IMPORTED_MODULE_2__.default.filter('price', function (value) {
+  if (value) {
+    var price = Number(value);
+    return price.toLocaleString('en-MY', {
+      style: 'currency',
+      currency: 'MYR'
+    });
+  }
+});
 var app = new vue__WEBPACK_IMPORTED_MODULE_2__.default({
   el: '#app'
 });
+
+/***/ }),
+
+/***/ "./resources/js/services/CartService.js":
+/*!**********************************************!*\
+  !*** ./resources/js/services/CartService.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getCart": () => (/* binding */ getCart),
+/* harmony export */   "getMembershipDiscount": () => (/* binding */ getMembershipDiscount),
+/* harmony export */   "deleteCart": () => (/* binding */ deleteCart)
+/* harmony export */ });
+function getCart(id) {
+  return axios.get('api/cart/' + id);
+}
+function getMembershipDiscount(id) {
+  return axios.get('/api/get-membership-discount/' + id);
+}
+function deleteCart(id) {
+  return axios["delete"]('api/cart/' + id);
+}
+
+/***/ }),
+
+/***/ "./resources/js/services/ProductService.js":
+/*!*************************************************!*\
+  !*** ./resources/js/services/ProductService.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getProduct": () => (/* binding */ getProduct)
+/* harmony export */ });
+function getProduct(productId) {
+  return axios.get('/api/product/' + productId);
+}
 
 /***/ }),
 
@@ -49819,7 +49873,7 @@ var render = function() {
                       _c("p", {}, [
                         _vm._v(
                           _vm._s(
-                            _vm._f("showPrice")(
+                            _vm._f("price")(
                               _vm._f("discount")(
                                 product.price,
                                 _vm.discountPercentage
@@ -50243,13 +50297,13 @@ var render = function() {
                           ]),
                           _vm._v(" "),
                           _c("td", [
-                            _vm._v(_vm._s(_vm._f("showPrice")(cart.price)))
+                            _vm._v(_vm._s(_vm._f("price")(cart.price)))
                           ]),
                           _vm._v(" "),
                           _c("td", [
                             _vm._v(
                               _vm._s(
-                                _vm._f("showPrice")(
+                                _vm._f("price")(
                                   _vm._f("discount")(
                                     cart.total,
                                     _vm.discountPercentage
@@ -50285,12 +50339,16 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v("Order Summary :")]),
                         _vm._v(" "),
-                        _c("td", [
-                          _vm._v("Items Qty(" + _vm._s(_vm.carts.length) + ") ")
-                        ]),
+                        _vm.carts
+                          ? _c("td", [
+                              _vm._v(
+                                "Items Qty(" + _vm._s(_vm.carts.length) + ") "
+                              )
+                            ])
+                          : _vm._e(),
                         _vm._v(" "),
                         _c("td", [
-                          _vm._v(_vm._s(_vm._f("showPrice")(_vm.totalItems)))
+                          _vm._v(_vm._s(_vm._f("price")(_vm.totalItems)))
                         ])
                       ]),
                       _vm._v(" "),
@@ -50308,7 +50366,7 @@ var render = function() {
                         _c("td", [_vm._v("Total Discount")]),
                         _vm._v(" "),
                         _c("td", [
-                          _vm._v(_vm._s(_vm._f("showPrice")(_vm.discountPrice)))
+                          _vm._v(_vm._s(_vm._f("price")(_vm.discountPrice)))
                         ])
                       ]),
                       _vm._v(" "),
@@ -50323,9 +50381,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v("Total")]),
                         _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(_vm._f("showPrice")(_vm.total)))
-                        ])
+                        _c("td", [_vm._v(_vm._s(_vm._f("price")(_vm.total)))])
                       ]),
                       _vm._v(" "),
                       _vm._m(2)
@@ -50840,7 +50896,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("h1", { staticClass: "font-bold text-xl" }, [
-                    _vm._v(_vm._s(_vm._f("showPrice")(_vm.product.price)) + " ")
+                    _vm._v(_vm._s(_vm._f("price")(_vm.product.price)) + " ")
                   ]),
                   _vm._v(" "),
                   _c(

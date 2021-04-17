@@ -63,8 +63,7 @@
  </main>
 </template>
 <script>
-
-export default {
-    name: 'Order'
-}
+    export default {
+        name: 'Order'
+    }
 </script>
