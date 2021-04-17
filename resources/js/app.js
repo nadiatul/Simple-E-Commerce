@@ -50,6 +50,15 @@ Vue.component('order', require('./pages/Order.vue').default);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+Vue.filter('price', function (value) {
+    if(value){
+        let price = Number(value);
+        return (price).toLocaleString('en-MY', {
+            style: 'currency',
+            currency: 'MYR',
+        });
+    }
+})
 
 const app = new Vue({
     el: '#app',
