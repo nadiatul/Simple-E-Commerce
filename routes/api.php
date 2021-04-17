@@ -24,8 +24,8 @@ Route::get('/product/{id}', [App\Http\Controllers\ProductController::class, 'vie
 Route::get('/product-category/{category}/{id}', [App\Http\Controllers\ProductController::class, 'filterByCategory'])->name('view');
 Route::post('/add-to-cart', [App\Http\Controllers\CartController::class, 'store']);
 
-Route::get('/get-carts/{userId}', [App\Http\Controllers\CartController::class, 'getCartList']);
-Route::delete('/delete-cart/{userId}', [App\Http\Controllers\CartController::class, 'delete']);
+Route::get('/cart/{userId}', [App\Http\Controllers\CartController::class, 'getCartList']);
+Route::delete('/cart/{userId}', [App\Http\Controllers\CartController::class, 'delete']);
 
 Route::get('/get-membership-discount/{userId}', [App\Http\Controllers\MembershipController::class, 'getMembershipDscount']);
 
