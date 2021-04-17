@@ -32,8 +32,8 @@ class HomeController extends Controller
      */
     public function productDetails($id)
     {
-        return view('productDetails')->with('id', $id);
-    }   
+        return view('productDetail')->with('id', $id);
+    }
 
     /**
      * Show the application dashboard.
@@ -57,6 +57,6 @@ class HomeController extends Controller
 
     public function addToCarts()
     {
-        return view('addToCarts');
-    } 
+        return view('cart');
+    }
 }

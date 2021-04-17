@@ -24,7 +24,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/product-details/{id}', [App\Http\Controllers\HomeController::class, 'productDetails'])->name('product-details');
 
-Route::get('/add-to-carts', [App\Http\Controllers\AddToCartController::class, 'index'])->name('add-to-carts');
+Route::get('/add-to-carts', [App\Http\Controllers\CartController::class, 'index'])->name('add-to-carts');
 
 Route::get('/order-history', [App\Http\Controllers\HomeController::class, 'orderHistory'])->name('order-history');
 

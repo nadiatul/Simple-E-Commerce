@@ -5,12 +5,12 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\AddToCart;
+use App\Models\Cart;
 
 
-class AddToCartController extends Controller
+class CartController extends Controller
 {
-        
+
     /**
      * Show the application dashboard.
      *
@@ -19,21 +19,21 @@ class AddToCartController extends Controller
     public function index()
     {
         $userId = Auth::user()->id;
-        $carts = AddToCart::where('user_id', $userId)->get();
-        return view('addToCarts');
-    } 
+        $carts = Cart::where('user_id', $userId)->get();
+        return view('cart');
+    }
 
     public function getCartList($userId)
     {
         $carts = AddToCart::with('product')->where('user_id', $userId)->get();
         return $carts;
-    } 
-    
-    
+    }
+
+
     public function delete($id)
     {
         AddToCart::destroy($id);
-    } 
+    }
 
     public function store(Request $request) {
         $cart = new AddToCart;
@@ -42,5 +42,5 @@ class AddToCartController extends Controller
         $cart->quantity = 1;
         $cart->save();
         return ['message'=> 'Item is added to Cart'];
-    } 
+    }
 }

@@ -1,4 +1,4 @@
 @extends('layouts.main-page')
 @section('content')
-    <main-component v-bind:user="{{Auth::user()}}" ></main-component>
+    <vue-main v-bind:user="{{Auth::user()}}" ></vue-main>
 @endsection

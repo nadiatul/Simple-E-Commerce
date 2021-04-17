@@ -43,7 +43,7 @@
 <script>
 
 export default({
-   name: 'NavComponent',
+   name: 'VueNav',
        data () {
         return {
           hideProfile: true

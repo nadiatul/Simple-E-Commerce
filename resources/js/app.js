@@ -34,16 +34,16 @@ window.axios = require('axios');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('header-component', require('./layouts/HeaderComponent.vue').default);
-Vue.component('footer-component', require('./layouts/FooterComponent.vue').default);
-Vue.component('navbar-component', require('./layouts/NavbarComponent.vue').default);
-Vue.component('main-component', require('./layouts/MainComponent.vue').default);
-Vue.component('nav-component', require('./layouts/NavComponent.vue').default);
+Vue.component('vue-header', require('./layouts/Vue-Header.vue').default);
+Vue.component('vue-footer', require('./layouts/Vue-Footer.vue').default);
+Vue.component('vue-navbar', require('./layouts/Vue-Navbar.vue').default);
+Vue.component('vue-main', require('./layouts/Vue-Main.vue').default);
+Vue.component('vue-nav', require('./layouts/Vue-Nav.vue').default);
 
-Vue.component('product-details-component', require('./pages/ProductDetailsComponent.vue').default);
-Vue.component('add-to-carts-component', require('./pages/AddToCartsComponent.vue').default);
-Vue.component('order-history-component', require('./pages/OrderHistoryComponent.vue').default);
-Vue.component('place-order-component', require('./pages/PlaceOrderComponent.vue').default);
+Vue.component('product-detail', require('./pages/ProductDetail.vue').default);
+Vue.component('cart', require('./pages/Cart.vue').default);
+Vue.component('order-history', require('./pages/OrderHistory.vue').default);
+Vue.component('order', require('./pages/Order.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

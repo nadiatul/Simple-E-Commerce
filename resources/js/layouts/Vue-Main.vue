@@ -7,7 +7,7 @@
       </div>
       <div class="row mx-2">
           <div class="col-md-3">
-                <navbar-component @clickFilter="onClickFilter"/>
+                <vue-navbar @clickFilter="onClickFilter"/>
           </div>
           <div class="col-md-9">
               <div class="row">
@@ -39,7 +39,7 @@ var getProductListUrl = '/api/products-list'
 var addToCartUrl = '/api/add-to-cart'
 var filterByCategory = '/api/product-category/'
 export default ({
-    name: 'MainComponent',
+    name: 'VueMain',
     mounted: function(){
         axios.get(getProductListUrl).then((response)=>{
             this.products = response.data;

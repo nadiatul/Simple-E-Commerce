@@ -27,7 +27,7 @@
 <script>
 var addToCartUrl = '/api/add-to-cart'
 export default ({
-    name: 'ProductDetailsComponent',
+    name: 'ProductDetail',
     props: ['user','productId'],
     mounted() {
         axios.get('/api/product/' + this.productId).

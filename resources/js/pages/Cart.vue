@@ -125,7 +125,7 @@
 <script>
 
   export default {
-    name: 'AddToCartsComponent',
+    name: 'Cart',
     mounted: function() {
       axios.get('/api/get-membership-discount/'+ this.user.id)
       .then((response) => {

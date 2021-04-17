@@ -7,6 +7,6 @@
 
   <script>
 export default {
-  name: "FooterComponent",
+  name: 'VueFooter',
 };
 </script>

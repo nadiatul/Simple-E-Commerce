@@ -14,7 +14,7 @@
 </template>
 <script>
 export default ({
-  name: 'NavbarComponent',
+  name: 'VueNavbar',
   methods:{
     onClickFilter(type, id){
         this.$emit('clickFilter', { type:type, id: id });
