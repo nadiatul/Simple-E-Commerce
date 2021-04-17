@@ -1,14 +1,14 @@
 <template>
- <main> 
+ <main>
+     <p>hello</p>
 <div v-if="message" class="shadow-md overflow-hidden m-4 bg-green-200 py-3 px-1">
     <div class="row mx-2">
-        {{ message }} 
+        {{ message }}
     </div>
  </div>
- <div class="bg-white shadow-md overflow-hidden m-4" v-if="product">   
+ <div class="bg-white shadow-md overflow-hidden m-4" v-if="product">
     <div class="md:flex">
         <div class="md:flex-shrink-0">
-            
             <img class="h-48 w-full object-cover md:w-48" :src="product.image">
         </div>
         <div class="p-8" v-if="product">
@@ -51,7 +51,7 @@ export default ({
     methods:{
         addToCart(id) {
             axios.post(addToCartUrl, {
-                productId: id, 
+                productId: id,
                 userId: this.user.id
                 })
             .then((response) => {
@@ -73,7 +73,7 @@ export default ({
               currency: 'MYR',
             });
           }
-        }),   
+        }),
     }
 })
 </script>

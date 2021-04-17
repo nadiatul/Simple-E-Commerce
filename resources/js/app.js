@@ -4,10 +4,24 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+// require('./bootstrap');
 
-import Vue from 'vue/dist/vue.common.js'
-// window.Vue = require('vue').default;
+// import Vue from 'vue/dist/vue.common.js'
+// // window.Vue = require('vue').default;
+
+import Vue from 'vue'
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+// Make BootstrapVue available throughout your project
+Vue.use(BootstrapVue)
+// Optionally install the BootstrapVue icon components plugin
+Vue.use(IconsPlugin)
+
+window.axios = require('axios');
 
 /**
  * The following block of code may be used to automatically register your

@@ -1,38 +1,16 @@
 <template>
-<div>
-  <div class="bg-white shadow w-64 my-2">
-    <ul class="list-reset">
-      <li class="border-b">
-        <p href="#" class="border-b-1 block py-4 px-3 text-grey-darker font-bold border-purple hover:bg-grey-lighter border-r-4"
-          ><b>Category</b></p>
-      </li>
-      <li @click="onClickFilter('category', 1)">
-        <a class="block p-3 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4"
-          >Laptop</a>
-      </li>
-      <li @click="onClickFilter('category', 2)">
-        <a class="block p-3 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4"
-          >Bag</a>
-      </li>
-    </ul>    
-   </div>
-   <div class="bg-white shadow w-64 my-2">
-    <ul class="list-reset">
-      <li class="border-b">
-        <p class="border-b-1 block py-4 px-3 text-grey-darker font-bold border-purple hover:bg-grey-lighter border-r-4"
-          ><b>Brand</b></p>
-      </li>
-      <li @click="onClickFilter('brand', 1)">
-        <a class="block p-3 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4"
-          >Dell</a>
-      </li>
-      <li @click="onClickFilter('brand', 2)">
-        <a class="block p-3 text-grey-darker font-bold border-grey-lighter hover:border-purple-light hover:bg-grey-lighter border-r-4"
-          >HP</a>
-      </li>
-    </ul>
-  </div>
-</div>
+    <div class="bg-light px-4 border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading my-2 py-20">Category </div>
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action bg-light" @click="onClickFilter('category', 1)">Laptop</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" @click="onClickFilter('category', 2)">Bag</a>
+    </div>
+    <div class="sidebar-heading my-2 py-2 mt-3">Brands </div>
+      <div class="list-group list-group-flush">
+        <a href="#" class="list-group-item list-group-item-action bg-light" @click="onClickFilter('brand', 1)">Dell</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light" @click="onClickFilter('brand',2)">HP</a>
+      </div>
+    </div>
 </template>
 <script>
 export default ({

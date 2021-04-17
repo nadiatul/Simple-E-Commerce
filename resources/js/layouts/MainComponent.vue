@@ -2,28 +2,32 @@
   <main>
       <div v-if="message" class="shadow-md overflow-hidden m-2 bg-green-200 py-2 px-1">
         <div class="row mx-2">
-            {{ message }} 
+            {{ message }}
         </div>
       </div>
       <div class="row mx-2">
-          <div class="grid-cols-4">
+          <div class="col-md-3">
                 <navbar-component @clickFilter="onClickFilter"/>
           </div>
-          <div class="grid-cols-8">
-            <div class="inline-block mx-2" v-for="product in products" :key="product.id">
-                <div class="max-w-xs bg-white shadow-md overflow-hidden my-2">
-                    <div class="px-4">
-                        <a :href="'/product-details/' + product.id" class="text-gray-900 font-bold text-3xl">{{ product.name }}</a>
+          <div class="col-md-9">
+              <div class="row">
+                  <div class="col">
+                    <div class="d-inline-block mx-2" v-for="product in products" :key="product.id">
+                        <div class="d-block mb-4 h-100">
+                            <div class="px-4">
+                                <a :href="'/product-details/' + product.id" class="">{{ product.name }}</a>
+                            </div>
+                            <img class="img-fluid img-thumbnail" :src="product.image">
+                            <div class="">
+                                <p class="">{{ product.price | discount(discountPercentage) | showPrice }}</p>
+                                <button @click="addToCart(product.id)" class="btn btn-success">
+                                    Add to cart
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <img class="h-60 object-cover mt-2" :src="product.image">
-                    <div class="flex items-center justify-between px-4 py-2 bg-gray-900">
-                        <h1 class="text-gray-200 font-bold text-xl">{{ product.price | discount(discountPercentage) | showPrice }}</h1>
-                        <button @click="addToCart(product.id)" class="px-3 py-1 bg-yellow-500 text-sm text-gray-900 font-semibold text-white">
-                            Add to cart
-                        </button>
-                    </div>
-                </div>            
-            </div>
+                  </div>
+              </div>
         </div>
     </div>
   </main>
@@ -44,9 +48,9 @@ export default ({
         })
 
         axios.get(this.getMembershipDiscountUrl)
-        .then((response) => { 
+        .then((response) => {
                 this.discountPercentage = response.data.discount_percent;
-        }, (error)=> { console.log(error) } )   
+        }, (error)=> { console.log(error) } )
     },
     props:['user','session'],
     data() {
@@ -60,7 +64,7 @@ export default ({
     methods:{
         addToCart(id) {
             axios.post(addToCartUrl, {
-                productId: id, 
+                productId: id,
                 userId: this.user.id
                 })
             .then((response) => {
@@ -74,7 +78,7 @@ export default ({
         },
         onClickFilter(filter) {
             axios.get(filterByCategory + filter.type+'/' + filter.id )
-            .then((response) => { 
+            .then((response) => {
                  this.products = response.data;
             }).catch((error) => {
                 console.log(error)
@@ -83,7 +87,7 @@ export default ({
     },
     filters: {
         discount:((originalPrice, discount) => {
-          let discountedPrice = (discount/100) * originalPrice 
+          let discountedPrice = (discount/100) * originalPrice
            return originalPrice - discountedPrice;
         }),
         showPrice: ((value) =>{
@@ -94,8 +98,14 @@ export default ({
               currency: 'MYR',
             });
           }
-        }), 
+        }),
     }
-
 })
 </script>
+
+<style scoped>
+img {
+    width:300px;
+    height: 230px;
+}
+</style>
