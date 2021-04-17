@@ -1990,15 +1990,6 @@ var filterByCategory = '/api/product-category/';
     discount: function discount(originalPrice, _discount) {
       var discountedPrice = _discount / 100 * originalPrice;
       return originalPrice - discountedPrice;
-    },
-    showPrice: function showPrice(value) {
-      if (value) {
-        var price = Number(value);
-        return price.toLocaleString('en-MY', {
-          style: 'currency',
-          currency: 'MYR'
-        });
-      }
     }
   }
 });
@@ -2361,15 +2352,6 @@ var CartService = __webpack_require__(/*! ../services/CartService */ "./resource
     }
   },
   filters: {
-    showPrice: function showPrice(value) {
-      if (value) {
-        var price = Number(value);
-        return price.toLocaleString('en-MY', {
-          style: 'currency',
-          currency: 'MYR'
-        });
-      }
-    },
     discount: function discount(originalPrice, _discount) {
       var discountedPrice = _discount / 100 * originalPrice;
       return originalPrice - discountedPrice;
@@ -2590,17 +2572,6 @@ var addToCartUrl = '/api/add-to-cart';
       })["catch"](function (error) {
         console.log(error);
       });
-    }
-  },
-  filters: {
-    showPrice: function showPrice(value) {
-      if (value) {
-        var price = Number(value);
-        return price.toLocaleString('en-MY', {
-          style: 'currency',
-          currency: 'MYR'
-        });
-      }
     }
   }
 });
@@ -50415,7 +50386,7 @@ var render = function() {
                     : _vm._e(),
                   _vm._v(" "),
                   _c("span", { staticClass: "font-semibold text-sm" }, [
-                    _vm._v(_vm._s(_vm._f("showPrice")(_vm.totalItems)))
+                    _vm._v(_vm._s(_vm._f("price")(_vm.totalItems)))
                   ])
                 ]),
                 _vm._v(" "),
@@ -50443,7 +50414,7 @@ var render = function() {
                       _c("span", [_vm._v("Total cost")]),
                       _vm._v(" "),
                       _c("span", [
-                        _vm._v(_vm._s(_vm._f("showPrice")(_vm.total)) + " ")
+                        _vm._v(_vm._s(_vm._f("price")(_vm.total)) + " ")
                       ])
                     ]
                   )

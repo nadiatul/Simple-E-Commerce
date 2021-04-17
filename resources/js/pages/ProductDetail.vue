@@ -60,17 +60,6 @@ export default ({
                 console.log(error)
             })
         }
-    },
-    filters: {
-        showPrice: ((value) =>{
-          if(value){
-            let price = Number(value);
-            return (price).toLocaleString('en-MY', {
-              style: 'currency',
-              currency: 'MYR',
-            });
-          }
-        }),
     }
 })
 </script>

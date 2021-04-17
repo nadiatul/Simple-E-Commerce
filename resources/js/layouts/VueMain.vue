@@ -77,7 +77,7 @@ export default ({
             })
         },
         onClickFilter(filter) {
-            axios.get(filterByCategory + filter.type+'/' + filter.id )
+            axios.get(filterByCategory + filter.type + '/' + filter.id )
             .then((response) => {
                  this.products = response.data;
             }).catch((error) => {
@@ -89,16 +89,7 @@ export default ({
         discount:((originalPrice, discount) => {
           let discountedPrice = (discount/100) * originalPrice
            return originalPrice - discountedPrice;
-        }),
-        showPrice: ((value) =>{
-          if(value){
-            let price = Number(value);
-            return (price).toLocaleString('en-MY', {
-              style: 'currency',
-              currency: 'MYR',
-            });
-          }
-        }),
+        })
     }
 })
 </script>

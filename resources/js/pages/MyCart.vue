@@ -95,7 +95,7 @@
         <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
         <div class="flex justify-between mt-10 mb-5">
           <span class="font-semibold text-sm uppercase" v-if="carts">Items {{ carts.length }}</span>
-          <span class="font-semibold text-sm">{{ totalItems | showPrice }}</span>
+          <span class="font-semibold text-sm">{{ totalItems | price }}</span>
         </div>
         <div>
           <label class="font-medium inline-block mb-3 text-sm uppercase">Shipping</label>
@@ -111,7 +111,7 @@
         <div class="border-t mt-8">
           <div class="flex font-semibold justify-between py-6 text-sm uppercase">
             <span>Total cost</span>
-            <span>{{ total | showPrice }} </span>
+            <span>{{ total | price }} </span>
           </div>
         </div>
       </div>
@@ -194,15 +194,6 @@
       }
   },
   filters: {
-      showPrice: ((value) =>{
-        if(value){
-          let price = Number(value);
-          return (price).toLocaleString('en-MY', {
-            style: 'currency',
-            currency: 'MYR',
-          });
-        }
-      }),
       discount:((originalPrice, discount) => {
         let discountedPrice = (discount/100) * originalPrice
           return originalPrice - discountedPrice
