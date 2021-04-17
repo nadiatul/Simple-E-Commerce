@@ -2431,11 +2431,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'OrderHistoryComponent'
 });
@@ -2534,10 +2529,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
 //
 //
 //
@@ -49968,7 +49959,9 @@ var render = function() {
                         {
                           key: "button-content",
                           fn: function() {
-                            return [_c("em", [_vm._v("User")])]
+                            return [
+                              _c("em", [_vm._v(_vm._s(_vm.username.name))])
+                            ]
                           },
                           proxy: true
                         }
@@ -50542,74 +50535,62 @@ var staticRenderFns = [
     return _c("main", [
       _c("div", { staticClass: "overflow-hidden" }, [
         _c("div", { staticClass: "container mx-auto mt-10" }, [
-          _c("div", { staticClass: "bg-white shadow-md my-2 p-3 text-right" }, [
-            _c("h3", { staticClass: "font-bold my-2 text-left" }, [
-              _vm._v("Order Number")
+          _c("h3", { staticClass: "font-bold my-2 text-left" }, [
+            _vm._v("Order Number")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "my-2 text-left" }, [
+            _vm._v("Placed on 27 Mar 2021")
+          ]),
+          _vm._v(" "),
+          _c("table", { staticClass: "table table-responsive" }, [
+            _c("thead", [
+              _c("th", [_vm._v("No")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Items")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Price")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Qty")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Total")]),
+              _vm._v(" "),
+              _c("th", [_vm._v("Status")])
             ]),
             _vm._v(" "),
-            _c("p", { staticClass: "my-2 text-left" }, [
-              _vm._v("Placed on 27 Mar 2021")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "grid grid-cols-5" }, [
-              _c("div"),
-              _vm._v(" "),
-              _c("div", { staticClass: "font-bold" }, [_vm._v("Price")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "font-bold" }, [_vm._v("Qty")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "font-bold" }, [_vm._v("Total")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "font-bold" }, [_vm._v("Status")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "grid grid-cols-5 my-3" }, [
-              _c("div", [
-                _c("img", {
-                  attrs: {
-                    src:
-                      "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=889&q=80"
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", [_vm._v("RM 2,000.00")]),
-              _vm._v(" "),
-              _c("div", [_vm._v("1")]),
-              _vm._v(" "),
-              _c("div", [_vm._v("RM 2,000.00")]),
-              _vm._v(" "),
-              _c("div", [_vm._v("Paid")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "grid grid-cols-5 my-3" }, [
-              _c("div", [
-                _c("img", {
-                  attrs: {
-                    src:
-                      "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=889&q=80"
-                  }
-                })
-              ]),
-              _vm._v(" "),
-              _c("div", [_vm._v("RM 2,000.00")]),
-              _vm._v(" "),
-              _c("div", [_vm._v("1")]),
-              _vm._v(" "),
-              _c("div", [_vm._v("RM 2,000.00")]),
-              _vm._v(" "),
-              _c("div", [_vm._v("Paid")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "text-right" }, [
-              _c("p", [_vm._v("Subtotal: RM 2,000")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Shipping Fees: RM 2,000")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("Discount: RM 2,000")]),
-              _vm._v(" "),
-              _c("p", { staticClass: "font-bold" }, [_vm._v("Total: RM 2,000")])
+            _c("tbody", [
+              _c("tr", [
+                _c("td", [_vm._v("1")]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("img", {
+                    staticClass: "img-fluid img-thumbnail w-25",
+                    attrs: {
+                      src:
+                        "https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=889&q=80"
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v("RM 2,000.00")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("1")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("RM 2,000.00")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Delivered")])
+              ])
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "text-right" }, [
+            _c("p", [_vm._v("Subtotal: RM 2,000")]),
+            _vm._v(" "),
+            _c("p", [_vm._v("Shipping Fees: RM 2,000")]),
+            _vm._v(" "),
+            _c("p", [_vm._v("Discount: RM 2,000")]),
+            _vm._v(" "),
+            _c("p", { staticClass: "font-bold" }, [_vm._v("Total: RM 2,000")])
           ])
         ])
       ])
@@ -50834,8 +50815,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("main", [
-    _c("p", [_vm._v("hello")]),
-    _vm._v(" "),
     _vm.message
       ? _c(
           "div",
@@ -50873,46 +50852,15 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass:
-                        "bg-gray-800 p-1 rounded-full text-white hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white",
+                      staticClass: "btn btn-success",
                       on: {
                         click: function($event) {
                           return _vm.addToCart(_vm.product.id)
                         }
                       }
                     },
-                    [
-                      _c("span", { staticClass: "sr-only" }),
-                      _vm._v(" "),
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "h-6 w-6",
-                          attrs: {
-                            xmlns: "http://www.w3.org/2000/svg",
-                            fill: "none",
-                            viewBox: "0 0 24 24",
-                            stroke: "currentColor"
-                          }
-                        },
-                        [
-                          _c("path", {
-                            attrs: {
-                              "stroke-linecap": "round",
-                              "stroke-linejoin": "round",
-                              "stroke-width": "2",
-                              d:
-                                "M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                            }
-                          })
-                        ]
-                      )
-                    ]
+                    [_vm._v("\n             Add to cart\n            ")]
                   ),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "font-bold" }, [
-                    _vm._v("Add to cart")
-                  ]),
                   _vm._v(" "),
                   _c("div", {
                     domProps: { innerHTML: _vm._s(_vm.product.description) }
