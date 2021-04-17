@@ -1,4 +1,4 @@
 @extends('layouts.mainPage')
 @section('content')
-    <order-history></order-history>
+    <my-cart v-bind:user="{{Auth::user()}}"></my-cart>
 @endsection

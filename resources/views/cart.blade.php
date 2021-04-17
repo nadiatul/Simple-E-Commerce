@@ -1,4 +1,4 @@
-@extends('layouts.main-page')
+@extends('layouts.mainPage')
 @section('content')
     <cart></cart>
 @endsection

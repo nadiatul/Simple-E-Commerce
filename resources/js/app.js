@@ -34,14 +34,14 @@ window.axios = require('axios');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('vue-header', require('./layouts/Vue-Header.vue').default);
-Vue.component('vue-footer', require('./layouts/Vue-Footer.vue').default);
-Vue.component('vue-navbar', require('./layouts/Vue-Navbar.vue').default);
-Vue.component('vue-main', require('./layouts/Vue-Main.vue').default);
-Vue.component('vue-nav', require('./layouts/Vue-Nav.vue').default);
+Vue.component('vue-header', require('./layouts/VueHeader.vue').default);
+Vue.component('vue-footer', require('./layouts/VueFooter.vue').default);
+Vue.component('vue-navbar', require('./layouts/VueNavbar.vue').default);
+Vue.component('vue-main', require('./layouts/VueMain.vue').default);
+Vue.component('vue-nav', require('./layouts/VueNav.vue').default);
 
 Vue.component('product-detail', require('./pages/ProductDetail.vue').default);
-Vue.component('cart', require('./pages/Cart.vue').default);
+Vue.component('my-cart', require('./pages/MyCart.vue').default);
 Vue.component('order-history', require('./pages/OrderHistory.vue').default);
 Vue.component('order', require('./pages/Order.vue').default);
 

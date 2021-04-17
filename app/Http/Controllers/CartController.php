@@ -20,23 +20,23 @@ class CartController extends Controller
     {
         $userId = Auth::user()->id;
         $carts = Cart::where('user_id', $userId)->get();
-        return view('cart');
+        return view('myCart');
     }
 
     public function getCartList($userId)
     {
-        $carts = AddToCart::with('product')->where('user_id', $userId)->get();
+        $carts = Cart::with('product')->where('user_id', $userId)->get();
         return $carts;
     }
 
 
     public function delete($id)
     {
-        AddToCart::destroy($id);
+        Cart::destroy($id);
     }
 
     public function store(Request $request) {
-        $cart = new AddToCart;
+        $cart = new Cart;
         $cart->products_id = $request->productId;
         $cart->user_id = $request->userId;
         $cart->quantity = 1;

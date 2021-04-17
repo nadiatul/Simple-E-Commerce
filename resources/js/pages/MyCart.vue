@@ -88,9 +88,6 @@
                     <td><button href="/place-order" class="btn btn-success">Checkout</button></td>
                 </tr>
             </tbody>
-            <tfooter>
-
-            </tfooter>
         </table>
       </div>
 
