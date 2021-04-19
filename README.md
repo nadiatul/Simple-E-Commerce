@@ -1,6 +1,6 @@
 # Simple-E-Commerce
 
-This is a Simple E-Commerce system using Laravel 8 + Vue 3 + TailwindCSS 
+This is a Simple E-Commerce system using Laravel 8 + VueJS  + Bootstrap 5
 
 In this E-commerce system we have few simple and basic functionality and features which are:-
 1. List of Products
@@ -14,7 +14,7 @@ Instruction
 1. git clone https://github.com/nadiatul/Simple-E-Commerce.git
 2. npm install 
 3. composer install
-4. create a database 
+4. create a database name=ecommerce
 5. configure database credentials in  config/database.php & .env file
 6. php artisan migrate
 7. php artisan key:generate
@@ -45,4 +45,3 @@ Photo by <a href="https://unsplash.com/@xps?utm_source=unsplash&utm_medium=refer
 
 Photo by <a href="https://unsplash.com/@campaign_creators?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Campaign Creators</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   
-Thank you so much :)
