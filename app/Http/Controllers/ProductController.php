@@ -19,13 +19,13 @@ class ProductController extends Controller
 
     public function filterByCategory($category,$id) {
         $field = '';
-        
+
         if($category == 'category'){
             $field = 'categories_id';
-        } else {    
+        } else {
             $field = 'brands_id';
         }
-        
+
         $product = Product::where('categories_id', $id)->get();
         return $product;
     }

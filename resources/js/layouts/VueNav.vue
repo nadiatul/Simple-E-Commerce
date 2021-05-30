@@ -2,14 +2,10 @@
 <div>
   <b-navbar toggleable="lg" type="dark" variant="info">
     <b-navbar-brand href="/">Home</b-navbar-brand>
-
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
       </b-navbar-nav>
-
-      <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-nav-form class="d-none">
           <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
@@ -18,18 +14,20 @@
 
         <b-nav-item-dropdown text="Lang" class="d-none" right>
           <b-dropdown-item href="#">EN</b-dropdown-item>
-          <b-dropdown-item href="#">ES</b-dropdown-item>
-          <b-dropdown-item href="#">RU</b-dropdown-item>
-          <b-dropdown-item href="#">FA</b-dropdown-item>
+          <b-dropdown-item href="#">MY</b-dropdown-item>
         </b-nav-item-dropdown>
+        <b-nav-form class="">
+            <b-button class="bg-info rounded-circle">
+                <b-icon icon="bell"></b-icon>
+            </b-button>
+        </b-nav-form>
 
         <b-nav-item-dropdown right>
-          <!-- Using 'button-content' slot -->
           <template #button-content>
             <em>{{ username.name }}</em>
           </template>
           <b-dropdown-item href="#">Profile</b-dropdown-item>
-          <b-dropdown-item href="/add-to-carts">Add To Cart</b-dropdown-item>
+          <b-dropdown-item href="/add-to-carts">My Cart</b-dropdown-item>
           <b-dropdown-item href="/order-history">My Order History</b-dropdown-item>
           <b-dropdown-item @click="logout()" href="#">Sign Out</b-dropdown-item>
         </b-nav-item-dropdown>
@@ -56,7 +54,7 @@ export default({
         clickProfile() {
             this.hideProfile = this.hideProfile ? false: true;
         },
-        logout(){
+        logout() {
             axios.post("logout").then(response => {
             window.location.href = "/home"
           })

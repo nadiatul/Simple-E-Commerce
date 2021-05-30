@@ -5,29 +5,25 @@
             {{ message }}
         </div>
       </div>
-      <div class="row mx-2">
-          <div class="col-md-3">
-                <vue-navbar @clickFilter="onClickFilter"/>
+      <div class="row">
+          <div class="col-md-2">
+             <vue-navbar @clickFilter="onClickFilter"/>
           </div>
-          <div class="col-md-9">
-              <div class="row">
-                  <div class="col">
-                    <div class="d-inline-block mx-2" v-for="product in products" :key="product.id">
-                        <div class="d-block mb-4 h-100">
-                            <div class="px-4">
-                                <a :href="'/product-details/' + product.id" class="">{{ product.name }}</a>
-                            </div>
-                            <img class="img-fluid img-thumbnail" :src="product.image">
-                            <div class="">
-                                <p class="">{{ product.price | discount(discountPercentage) | price }}</p>
-                                <button @click="addToCart(product.id)" class="btn btn-success">
-                                    Add to cart
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-              </div>
+            <b-card v-for="product in products" :key="product.id"
+                :title="product.name"
+                :img-src="product.image"
+                img-alt="Image"
+                img-top
+                tag="article"
+                style="max-width: 20rem;"
+                class="m-3"
+            >
+                <b-card-text>
+                    <p class="">{{ product.price | discount(discountPercentage) | price }}</p>
+                </b-card-text>
+                <b-button @click="addToCart(product.id)" class="btn btn-success">Add to cart </b-button>
+                <b-button :href="'/product-details/' + product.id" variant="primary">Detail</b-button>
+            </b-card>
         </div>
     </div>
   </main>
