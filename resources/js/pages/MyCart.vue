@@ -84,7 +84,7 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
+                    <td>Hello world</td>
                     <td><button href="/place-order" class="btn btn-success">Checkout</button></td>
                 </tr>
             </tbody>
